@@ -13,11 +13,12 @@ class ViewController: UIViewController {
     
     @IBAction func onClick(_ sender: Any) {
         let item = RevRevolutCardImpl(id: "id.1")
-        item.runOnBackgroundThread()
-        item.runOnBackgroundThreadBlock { () -> RevStdlibUnit in
+        item.printIdAsync()
+        item.runAsync(l: { () -> RevStdlibUnit in
             print("This is background thread")
             return RevStdlibUnit()
-        }
+
+        })
         print("First")
     }
     

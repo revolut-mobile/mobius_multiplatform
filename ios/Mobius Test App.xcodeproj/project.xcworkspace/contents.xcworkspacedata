@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:mobius.xcodeproj">
+      location = "self:/Users/ivazhnov/rep/mobius_multiplatform/ios/Mobius Test App.xcodeproj">
    </FileRef>
 </Workspace>

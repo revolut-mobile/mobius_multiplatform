@@ -144,7 +144,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 671218FC2039E61100949A2A /* Build configuration list for PBXProject "mobius" */;
+			buildConfigurationList = 671218FC2039E61100949A2A /* Build configuration list for PBXProject "Mobius Test App" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -359,7 +359,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		671218FC2039E61100949A2A /* Build configuration list for PBXProject "mobius" */ = {
+		671218FC2039E61100949A2A /* Build configuration list for PBXProject "Mobius Test App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				671219112039E61100949A2A /* Debug */,

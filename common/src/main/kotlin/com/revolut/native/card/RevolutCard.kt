@@ -5,9 +5,9 @@ interface RevolutCard {
 
     val id: String
 
-    fun runOnBackgroundThread()
+    fun printIdAsync()
 
-    fun runOnBackgroundThreadBlock(l: (() -> Unit))
+    fun runAsync(l: (() -> Unit))
 
 }
 
