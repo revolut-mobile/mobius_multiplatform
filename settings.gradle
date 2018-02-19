@@ -1,5 +1,3 @@
-include ':mobius.app'
 rootProject.name = 'mobius'
-
-include 'common', 'ios', 'common-jvm', 'mobius.app'
+include 'common', 'common-ios', 'common-jvm', 'android'
 

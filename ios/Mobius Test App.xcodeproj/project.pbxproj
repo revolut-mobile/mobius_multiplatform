@@ -12,18 +12,21 @@
 		6712190A2039E61100949A2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 671219082039E61100949A2A /* Main.storyboard */; };
 		6712190C2039E61100949A2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6712190B2039E61100949A2A /* Assets.xcassets */; };
 		6712190F2039E61100949A2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6712190D2039E61100949A2A /* LaunchScreen.storyboard */; };
-		671219292039EEE300949A2A /* Rev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6712191A2039EB7D00949A2A /* Rev.framework */; };
-		6712192A2039EEE300949A2A /* Rev.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6712191A2039EB7D00949A2A /* Rev.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		67C15C16203AC5A6002FC4E6 /* Rev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67121930203AC19400949A2A /* Rev.framework */; };
+		67C15C17203AC5A6002FC4E6 /* Rev.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67121930203AC19400949A2A /* Rev.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		67C15C18203AC5CD002FC4E6 /* Rev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6712192D203AC19400949A2A /* Rev.framework */; };
+		67C15C19203AC5CD002FC4E6 /* Rev.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6712192D203AC19400949A2A /* Rev.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6712192B2039EEE300949A2A /* Embed Frameworks */ = {
+		6712193C203AC47C00949A2A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6712192A2039EEE300949A2A /* Rev.framework in Embed Frameworks */,
+				67C15C19203AC5CD002FC4E6 /* Rev.framework in Embed Frameworks */,
+				67C15C17203AC5A6002FC4E6 /* Rev.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,10 +41,10 @@
 		6712190B2039E61100949A2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6712190E2039E61100949A2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		671219102039E61100949A2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		671219172039EB7D00949A2A /* Rev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rev.framework; sourceTree = "<group>"; };
-		671219182039EB7D00949A2A /* Rev.kt.bc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rev.kt.bc; sourceTree = "<group>"; };
-		6712191A2039EB7D00949A2A /* Rev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rev.framework; sourceTree = "<group>"; };
-		6712191B2039EB7D00949A2A /* Rev.kt.bc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rev.kt.bc; sourceTree = "<group>"; };
+		6712192D203AC19400949A2A /* Rev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rev.framework; sourceTree = "<group>"; };
+		6712192E203AC19400949A2A /* Rev.kt.bc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rev.kt.bc; sourceTree = "<group>"; };
+		67121930203AC19400949A2A /* Rev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rev.framework; sourceTree = "<group>"; };
+		67121931203AC19400949A2A /* Rev.kt.bc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rev.kt.bc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				671219292039EEE300949A2A /* Rev.framework in Frameworks */,
+				67C15C18203AC5CD002FC4E6 /* Rev.framework in Frameworks */,
+				67C15C16203AC5A6002FC4E6 /* Rev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,8 +63,8 @@
 		671218F82039E61100949A2A = {
 			isa = PBXGroup;
 			children = (
-				671219162039EB7D00949A2A /* iphone */,
-				671219192039EB7D00949A2A /* iphone_sim */,
+				6712192C203AC19400949A2A /* iphone */,
+				6712192F203AC19400949A2A /* iphone_sim */,
 				671219032039E61100949A2A /* mobius */,
 				671219022039E61100949A2A /* Products */,
 			);
@@ -87,24 +91,24 @@
 			path = mobius;
 			sourceTree = "<group>";
 		};
-		671219162039EB7D00949A2A /* iphone */ = {
+		6712192C203AC19400949A2A /* iphone */ = {
 			isa = PBXGroup;
 			children = (
-				671219172039EB7D00949A2A /* Rev.framework */,
-				671219182039EB7D00949A2A /* Rev.kt.bc */,
+				6712192D203AC19400949A2A /* Rev.framework */,
+				6712192E203AC19400949A2A /* Rev.kt.bc */,
 			);
 			name = iphone;
-			path = build/konan/bin/iphone;
+			path = "../common-ios/build/konan/bin/iphone";
 			sourceTree = "<group>";
 		};
-		671219192039EB7D00949A2A /* iphone_sim */ = {
+		6712192F203AC19400949A2A /* iphone_sim */ = {
 			isa = PBXGroup;
 			children = (
-				6712191A2039EB7D00949A2A /* Rev.framework */,
-				6712191B2039EB7D00949A2A /* Rev.kt.bc */,
+				67121930203AC19400949A2A /* Rev.framework */,
+				67121931203AC19400949A2A /* Rev.kt.bc */,
 			);
 			name = iphone_sim;
-			path = build/konan/bin/iphone_sim;
+			path = "../common-ios/build/konan/bin/iphone_sim";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,7 +121,7 @@
 				671218FD2039E61100949A2A /* Sources */,
 				671218FE2039E61100949A2A /* Frameworks */,
 				671218FF2039E61100949A2A /* Resources */,
-				6712192B2039EEE300949A2A /* Embed Frameworks */,
+				6712193C203AC47C00949A2A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -320,12 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QUZEZSEARC;
-				FRAMEWORK_SEARCH_PATHS = (
-					build/konan/bin/iphone_sim,
-					build/konan/bin/iphone,
-					"$(PROJECT_DIR)/build/konan/bin/iphone",
-					"$(PROJECT_DIR)/build/konan/bin/iphone_sim",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../common-ios/build/konan/bin/iphone_sim";
 				INFOPLIST_FILE = mobius/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = revolut.mobius;
@@ -341,12 +340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QUZEZSEARC;
-				FRAMEWORK_SEARCH_PATHS = (
-					build/konan/bin/iphone_sim,
-					build/konan/bin/iphone,
-					"$(PROJECT_DIR)/build/konan/bin/iphone",
-					"$(PROJECT_DIR)/build/konan/bin/iphone_sim",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../common-ios/build/konan/bin/iphone";
 				INFOPLIST_FILE = mobius/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = revolut.mobius;
