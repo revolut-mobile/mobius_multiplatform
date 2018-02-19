@@ -1,11 +1,14 @@
 package com.revolut.native.card
 
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.Scheduler
 import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 
-actual class RevolutCardImpl(override val id: String) : RevolutCard {
+actual class RevolutCardImpl(
+        override val id: String,
+        private val mainThread: Scheduler
+) : RevolutCard {
 
     override fun printIdAsync() {
         Observable.timer(1000, TimeUnit.MILLISECONDS)
@@ -22,7 +25,7 @@ actual class RevolutCardImpl(override val id: String) : RevolutCard {
         }
 
         Observable.timer(1000, TimeUnit.MILLISECONDS)
-                .observeOn(Schedulers.from(CurrentThreadExecutor()))
+                .observeOn(mainThread)
                 .subscribe {
                     l.invoke()
                 }

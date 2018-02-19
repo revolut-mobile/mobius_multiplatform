@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
 import com.revolut.native.card.RevolutCardImpl
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         fab.setOnClickListener {
-            val card = RevolutCardImpl("id.android")
+            val card = RevolutCardImpl("id.android", AndroidSchedulers.mainThread())
             card.printIdAsync()
             card.runAsync {
                 println("Card id = ${card.id}, thread = ${Thread.currentThread().name}")
