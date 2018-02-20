@@ -16,7 +16,12 @@ actual class CardsRepository {
              *  continuation.resume(List<RevolutCard>) must be called.
              *  If any error: continuation.error(Throwable).
              * */
-            listOf(RevolutCardImpl("1"), RevolutCardImpl("2"))
+
+//            Networking.getAllCards(onSuccess -> {
+//                continuation.resume(it)
+//            }, onError-> {
+//                continuation.resumeWithException(it)
+//            })
             COROUTINE_SUSPENDED
         }
     }

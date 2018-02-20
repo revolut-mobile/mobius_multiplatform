@@ -13,10 +13,14 @@ actual class MainPresenter(val context: CoroutineContext,
                            val interactor: GetAllCardsInteractor) {
 
     actual fun attach(view: MainView) {
-
+//        launch(context) {
+//            val cards = interactor.getAllCards()
+//            view.setCards
+//        }
     }
 
     actual fun detach() {
+
     }
 
 
