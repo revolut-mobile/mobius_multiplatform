@@ -1,4 +1,4 @@
-package com.revolut.native.card
+package com.revolut.domain.models
 
 import io.reactivex.Observable
 import io.reactivex.Scheduler

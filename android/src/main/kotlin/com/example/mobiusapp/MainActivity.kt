@@ -5,7 +5,7 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
-import com.revolut.native.card.RevolutCardImpl
+import com.revolut.domain.models.RevolutCardImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.revolut.native.card
+package com.revolut.domain.models
 
 import platform.darwin.dispatch_async
 import platform.darwin.dispatch_get_main_queue
