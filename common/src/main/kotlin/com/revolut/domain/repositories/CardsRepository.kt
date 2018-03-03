@@ -1,4 +1,4 @@
-package com.revolut.domain.cards
+package com.revolut.domain.repositories
 
 import com.revolut.domain.models.RevolutCard
 
@@ -10,6 +10,5 @@ import com.revolut.domain.models.RevolutCard
 expect class CardsRepository {
 
     suspend fun getAllCards(): List<RevolutCard>
-
 
 }

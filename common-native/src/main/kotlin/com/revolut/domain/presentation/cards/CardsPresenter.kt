@@ -9,8 +9,10 @@ import com.revolut.domain.cards.GetAllCardsInteractor
  * Revolut
  * All rights reserved
  */
-actual class MainPresenter(val context: CoroutineContext,
-                           val interactor: GetAllCardsInteractor) {
+actual class CardsPresenter(
+        val context: CoroutineContext,
+        val interactor: GetAllCardsInteractor
+) : BasePresenter<CardsView> {
 
     actual fun attach(view: MainView) {
 //        launch(context) {
