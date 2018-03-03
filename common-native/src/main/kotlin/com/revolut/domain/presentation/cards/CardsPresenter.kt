@@ -13,7 +13,8 @@ import kotlin.coroutines.experimental.intrinsics.*
  * All rights reserved
  */
 actual class CardsPresenter(
-        private val dispatcher: ContinuationDispatcher
+        private val dispatcher: ContinuationDispatcher,
+        private val getter: Getter
 ) : BasePresenter<CardsView>() {
 
     init {
@@ -41,26 +42,45 @@ actual class CardsPresenter(
         block.startCoroutine(EmptyContinuation(context))
     }
 
+    private suspend fun runSuspended() {
+        suspendCoroutineOrReturn<String> { continuation ->
+            /** Here any iOS async loading libray can be used,
+             *  after loading is done:
+             *  continuation.resume(List<RevolutCard>) must be called.
+             *  If any error: continuation.error(Throwable).
+             * */
+
+            val value = getter.getString()
+            println(value)
+            continuation.resume(value)
+
+//            Networking.getAllCards(onSuccess -> {
+//                continuation.resume(it)
+//            }, onError-> {
+//                continuation.resumeWithException(it)
+//            })
+            COROUTINE_SUSPENDED
+        }
+    }
+
+
     fun start() {
         launchCustom(dispatcher, {
-            println(" World!")
+            runSuspended()
+            runSuspended()
         })
         print("Hello,")
     }
 
 }
 
-//
-//abstract class CoroutineDispatcher(key: CoroutineContext.Key<*>) : AbstractCoroutineContextElement(key), ContinuationInterceptor {
-//    abstract fun dispatch(context: CoroutineContext, block: Runnable)
-//}
-//
-//interface Runnable {
-//    fun run()
-//}
+interface Getter {
 
+    fun getString(): String
 
-abstract class ContinuationDispatcher<T> : AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
+}
+
+abstract class ContinuationDispatcher : AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
     abstract fun <T> dispatchResume(value: T, continuation: Continuation<T>): Boolean
     abstract fun dispatchResumeWithException(exception: Throwable, continuation: Continuation<*>): Boolean
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> = DispatchedContinuation(this, continuation)
@@ -73,7 +93,6 @@ class DispatchedContinuation<T>(
     override val context: CoroutineContext = continuation.context
 
     override fun resume(value: T) {
-        println("Dispatcher = $dispatcher")
         if (!dispatcher.dispatchResume(value, continuation))
             continuation.resume(value)
     }

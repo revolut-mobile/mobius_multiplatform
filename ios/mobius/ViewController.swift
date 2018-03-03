@@ -27,9 +27,18 @@ class Context : RevContinuationDispatcher {
     }
 }
 
+class StringGetter: NSObject,RevGetter {
+    func getString() -> String {
+        return " World"
+    }
+}
+
 class ViewController: UIViewController, RevCardsView {
     
-    private lazy var presenter: RevCardsPresenter = { return RevCardsPresenter(dispatcher: Context()) }()
+    private lazy var presenter: RevCardsPresenter = {
+        let getter = StringGetter()
+        return RevCardsPresenter(dispatcher: Context(), getter: getter)
+    }()
     
     func showCard(list: [RevRevolutCard]) {
         
