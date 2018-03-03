@@ -11,50 +11,24 @@ import Rev
 
 class Context : RevContinuationDispatcher {
     
-    private func dispatchResume(block: () -> Void) {
-        print("before")
-        let _ = block()
-        print("after")
-    }
-    
     override func dispatchResume(value: Any?, continuation: RevStdlibContinuation) -> Bool {
-//        dispatchResume {
+        DispatchQueue.global(qos: .background).async {
             continuation.resume(value: value)
-//        }
-        return true
-    }
-    
-    override func dispatchResumeWithException(exception: RevStdlibThrowable, continuation: RevStdlibContinuation) -> Bool {
-        dispatchResume {
-            continuation.resumeWithException(exception: exception)
         }
         return true
     }
     
-    //    override func dispatch(context: RevStdlibCoroutineContext, block: RevRunnable) {
-    //        print("11111")
-    //        DispatchQueue.global(qos: .background).async {
-    //            block.run()
-    //
-    //            DispatchQueue.main.async {
-    //                print("This is run on the main queue, after the previous code in outer block")
-    //            }
-    //        }
-    //    }
-    
-}
-
-class Key: NSObject, RevStdlibCoroutineContextKey {
-    
+    override func dispatchResumeWithException(exception: RevStdlibThrowable, continuation: RevStdlibContinuation) -> Bool {
+        DispatchQueue.global(qos: .background).async {
+            continuation.resumeWithException(exception: exception)
+        }
+        return true
+    }
 }
 
 class ViewController: UIViewController, RevCardsView {
     
-    private lazy var presenter: RevCardsPresenter = {
-        let key = Key()
-        let context = Context()
-        return RevCardsPresenter(dispatcher: context)
-    }()
+    private lazy var presenter: RevCardsPresenter = { return RevCardsPresenter(dispatcher: Context()) }()
     
     func showCard(list: [RevRevolutCard]) {
         
