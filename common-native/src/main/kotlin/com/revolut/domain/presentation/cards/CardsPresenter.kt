@@ -1,7 +1,8 @@
-package com.revolut.presentation
+package com.revolut.presentation.cards
 
 import kotlin.coroutines.experimental.CoroutineContext
-import com.revolut.domain.cards.GetAllCardsInteractor
+import com.revolut.domain.interactors.CardsInteractor
+import com.revolut.presentation.base.BasePresenter
 
 
 /**
@@ -11,23 +12,13 @@ import com.revolut.domain.cards.GetAllCardsInteractor
  */
 actual class CardsPresenter(
         val context: CoroutineContext,
-        val interactor: GetAllCardsInteractor
-) : BasePresenter<CardsView> {
-
-    actual fun attach(view: MainView) {
-//        launch(context) {
-//            val cards = interactor.getAllCards()
-//            view.setCards
-//        }
-    }
-
-    actual fun detach() {
-
-    }
+        private val interactor: CardsInteractor
+) : BasePresenter<CardsView>() {
 
 
     private fun launch(context: CoroutineContext, block: suspend () -> Unit) {
         TODO("This will be moved out to common module when bug with crashing compliler is fixed")
     }
+
 
 }

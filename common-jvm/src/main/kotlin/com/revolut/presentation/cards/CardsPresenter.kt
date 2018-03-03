@@ -13,12 +13,12 @@ actual class CardsPresenter(
         private val interactor: CardsInteractor
 ) : BasePresenter<CardsView>() {
 
-    override fun onViewAttached() {
+    actual override fun onViewAttached() {
         super.onViewAttached()
 
     }
 
-    override fun onViewDetached() {
+    actual override fun onViewDetached() {
         super.onViewDetached()
     }
 
