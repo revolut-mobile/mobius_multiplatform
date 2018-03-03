@@ -11,8 +11,8 @@ import com.revolut.presentation.base.BasePresenter
  * All rights reserved
  */
 actual class CardsPresenter(
-        val context: CoroutineContext,
-        private val interactor: CardsInteractor
+        val context: CoroutineContext
+//        private val interactor: CardsInteractor
 ) : BasePresenter<CardsView>() {
 
 
