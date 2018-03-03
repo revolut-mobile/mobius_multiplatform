@@ -12,10 +12,12 @@ abstract class BasePresenter<V : BaseView> {
 
     fun attach(view: V) {
         this.view = view
+        onViewAttached()
     }
 
     fun detach() {
         this.view = null
+        onViewDetached()
     }
 
     open fun onViewAttached() {

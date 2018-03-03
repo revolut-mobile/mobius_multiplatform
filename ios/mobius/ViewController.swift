@@ -9,38 +9,53 @@
 import UIKit
 import Rev
 
-class Context : NSObject, RevStdlibCoroutineContext {
+class Context : RevContinuationDispatcher {
     
-    func fold(initial: Any?, operation: @escaping (Any?, RevStdlibCoroutineContextElement) -> Any?) -> Any? {
-        return nil
+    private func dispatchResume(block: () -> Void) {
+        print("before")
+        let _ = block()
+        print("after")
     }
     
-    func get(key: RevStdlibCoroutineContextKey) -> RevStdlibCoroutineContextElement? {
-        return nil
+    override func dispatchResume(value: Any?, continuation: RevStdlibContinuation) -> Bool {
+//        dispatchResume {
+            continuation.resume(value: value)
+//        }
+        return true
     }
     
-    func minusKey(key: RevStdlibCoroutineContextKey) -> RevStdlibCoroutineContext {
-        return self
+    override func dispatchResumeWithException(exception: RevStdlibThrowable, continuation: RevStdlibContinuation) -> Bool {
+        dispatchResume {
+            continuation.resumeWithException(exception: exception)
+        }
+        return true
     }
     
-    func plus(context: RevStdlibCoroutineContext) -> RevStdlibCoroutineContext {
-        return self
-    }
+    //    override func dispatch(context: RevStdlibCoroutineContext, block: RevRunnable) {
+    //        print("11111")
+    //        DispatchQueue.global(qos: .background).async {
+    //            block.run()
+    //
+    //            DispatchQueue.main.async {
+    //                print("This is run on the main queue, after the previous code in outer block")
+    //            }
+    //        }
+    //    }
+    
+}
 
-    
-
+class Key: NSObject, RevStdlibCoroutineContextKey {
     
 }
 
 class ViewController: UIViewController, RevCardsView {
     
     private lazy var presenter: RevCardsPresenter = {
+        let key = Key()
         let context = Context()
-//        let repository = RevCardsRepository()
-//        let interactor = RevCardsInteractor(cardsRepository: repository)
-        return RevCardsPresenter(context: context)
+        return RevCardsPresenter(dispatcher: context)
     }()
-
+    
     func showCard(list: [RevRevolutCard]) {
         
     }
@@ -56,14 +71,16 @@ class ViewController: UIViewController, RevCardsView {
     }
     
     @IBAction func onClick(_ sender: Any) {
-        let item = RevRevolutCardImpl(id: "id.1")
-        item.printIdAsync()
-        item.runAsync(l: { () -> RevStdlibUnit in
-            print("This is background thread")
-            return RevStdlibUnit()
-
-        })
-        print("First")
+        print("Click")
+        presenter.start()
+        //        let item = RevRevolutCardImpl(id: "id.1")
+        //        item.printIdAsync()
+        //        item.runAsync(l: { () -> RevStdlibUnit in
+        //            print("This is background thread")
+        //            return RevStdlibUnit()
+        //
+        //        })
+        //        print("First")
     }
     
 }

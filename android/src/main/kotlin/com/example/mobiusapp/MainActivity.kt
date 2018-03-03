@@ -12,6 +12,11 @@ import com.revolut.domain.repositories.CardsRepository
 import com.revolut.presentation.cards.CardsPresenter
 import com.revolut.presentation.cards.CardsView
 import io.reactivex.android.schedulers.AndroidSchedulers
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.HandlerContext
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 import kotlin.coroutines.experimental.Continuation
 import kotlin.coroutines.experimental.CoroutineContext
 import kotlin.coroutines.experimental.startCoroutine
@@ -39,6 +44,13 @@ class MainActivity : AppCompatActivity(), CardsView {
     override fun onStart() {
         super.onStart()
         presenter.attach(this)
+
+        launch(UI) { // launch new coroutine in background and continue
+            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
+            println("World!") // print after delay
+        }
+        println("Hello,") // main thread continues while coroutine is delayed
+        Thread.sleep(2000L) //
     }
 
     override fun onStop() {
@@ -47,6 +59,7 @@ class MainActivity : AppCompatActivity(), CardsView {
     }
 
     override fun showCard(list: List<RevolutCard>) {
+
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -60,7 +73,7 @@ class MainActivity : AppCompatActivity(), CardsView {
     }
 
     private fun launchCustom(context: CoroutineContext, block: suspend () -> Unit) {
-        block.startCoroutine(EmptyContinuation)
+        block.startCoroutine(EmptyContinuation(context))
     }
 
 }
