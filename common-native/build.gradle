@@ -3,6 +3,8 @@ apply plugin: 'konan'
 konanArtifacts {
 
     framework('Rev', targets: ['iphone', 'iphone_sim']) {
+
+        // Enable multiplatform support for this artifact.
         enableMultiplatform true
 
         // Enable compiler optimizations (true/false).
@@ -19,6 +21,8 @@ konanArtifacts {
 
         // Pass additional command line options to the compiler.
         extraOpts '--time', '--verbose', 'linker'
+
+        commonSourceSets 'main'
     }
     
 }
