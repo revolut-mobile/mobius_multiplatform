@@ -60,19 +60,20 @@ actual class CardsPresenter(
 //}
 
 
-abstract class ContinuationDispatcher : AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
+abstract class ContinuationDispatcher<T> : AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
     abstract fun <T> dispatchResume(value: T, continuation: Continuation<T>): Boolean
     abstract fun dispatchResumeWithException(exception: Throwable, continuation: Continuation<*>): Boolean
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> = DispatchedContinuation(this, continuation)
 }
 
 class DispatchedContinuation<T>(
-        val dispatcher: ContinuationDispatcher,
-        val continuation: Continuation<T>
+        private val dispatcher: ContinuationDispatcher,
+        private val continuation: Continuation<T>
 ) : Continuation<T> {
     override val context: CoroutineContext = continuation.context
 
     override fun resume(value: T) {
+        println("Dispatcher = $dispatcher")
         if (!dispatcher.dispatchResume(value, continuation))
             continuation.resume(value)
     }

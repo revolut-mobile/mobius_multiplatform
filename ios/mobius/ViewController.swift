@@ -13,6 +13,7 @@ class Context : RevContinuationDispatcher {
     
     override func dispatchResume(value: Any?, continuation: RevStdlibContinuation) -> Bool {
         DispatchQueue.global(qos: .background).async {
+            print("2222")
             continuation.resume(value: value)
         }
         return true
