@@ -1,11 +1,24 @@
 apply plugin: 'konan'
 
-konan.targets = ['iphone', 'iphone_sim']
-
 konanArtifacts {
 
-    framework('Rev') {
+    framework('Rev', targets: ['iphone', 'iphone_sim']) {
         enableMultiplatform true
+
+        // Enable compiler optimizations (true/false).
+        enableOptimizations true
+
+        // Enable debugging for binaries generated (true/false).
+        enableDebug true
+
+        // Print all parameters during the build.
+        dumpParameters true
+
+        // Print time of compilation phases (equivalent of the `--time` command line option).
+        measureTime true
+
+        // Pass additional command line options to the compiler.
+        extraOpts '--time', '--verbose', 'linker'
     }
     
 }
