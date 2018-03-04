@@ -9,39 +9,29 @@
 import UIKit
 import Rev
 
-class Context : RevContinuationDispatcher {
-    
-    override func dispatchResume(value: Any?, continuation: RevStdlibContinuation) -> Bool {
-        DispatchQueue.global(qos: .background).async {
-            print("2222")
-            continuation.resume(value: value)
-        }
-        return true
-    }
-    
-    override func dispatchResumeWithException(exception: RevStdlibThrowable, continuation: RevStdlibContinuation) -> Bool {
-        DispatchQueue.global(qos: .background).async {
-            continuation.resumeWithException(exception: exception)
-        }
-        return true
-    }
-}
 
-class StringGetter: NSObject,RevGetter {
-    func getString() -> String {
-        return " World"
+class CardsRepository: RevCardsRepository{
+    override func getAllCardsSync() -> [RevRevolutCard] {
+        return [1, 2, 3, 4, 5].map( { i -> RevRevolutCard in
+            usleep(2_000_000)
+            print("processing card \(i)")
+            return RevRevolutCardImpl(id: "id.\(i)")
+        })
     }
 }
 
 class ViewController: UIViewController, RevCardsView {
     
     private lazy var presenter: RevCardsPresenter = {
-        let getter = StringGetter()
-        return RevCardsPresenter(dispatcher: Context(), getter: getter)
+        let interactor = RevCardsInteractor(cardsRepository: CardsRepository())
+        return RevCardsPresenter(interactor: interactor)
+        
     }()
     
     func showCard(list: [RevRevolutCard]) {
-        
+        for card in list {
+            print("Card.id = " + card.id)
+        }
     }
     
     override func viewDidLoad() {
