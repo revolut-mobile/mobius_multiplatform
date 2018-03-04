@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
+import android.widget.Button
 import com.revolut.domain.interactors.CardsInteractor
 import com.revolut.domain.models.RevolutCard
 import com.revolut.domain.models.RevolutCardImpl
@@ -34,6 +35,10 @@ class MainActivity : AppCompatActivity(), CardsView {
         val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         fab.setOnClickListener {
             presenter.start()
+        }
+        val button = findViewById<View>(R.id.button) as Button
+        button.setOnClickListener {
+            println("Click")
         }
     }
 

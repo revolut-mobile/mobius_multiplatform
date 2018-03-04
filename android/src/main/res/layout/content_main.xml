@@ -9,4 +9,10 @@
         tools:showIn="@layout/activity_main"
         tools:context="com.example.mobiusapp.MainActivity">
 
+    <Button
+        android:id="@+id/button"
+        android:text="Sample button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </android.support.constraint.ConstraintLayout>
