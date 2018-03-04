@@ -1,13 +1,9 @@
-package com.revolut.utils
+package com.revolut.coroutines
 
 import kotlin.coroutines.experimental.*
 import kotlin.coroutines.experimental.intrinsics.*
 
 import platform.darwin.*
-
-fun launch(context: CoroutineContext, block: suspend () -> Unit) {
-    block.startCoroutine(EmptyContinuation(context))
-}
 
 class AsyncDispatcher : ContinuationDispatcher() {
     private val queue = dispatch_queue_create("com.revolut.queue", null)
@@ -50,16 +46,3 @@ class DispatchedContinuation<T>(
     }
 }
 
-
-open class EmptyContinuation(override val context: CoroutineContext) : Continuation<Any?> {
-    companion object : EmptyContinuation(context)
-
-    override fun resume(value: Any?) {
-        //println("EmptyContinuation.resume")
-    }
-
-    override fun resumeWithException(exception: Throwable) {
-        //println("EmptyContinuation.resumeWithException $exception")
-        throw exception
-    }
-}

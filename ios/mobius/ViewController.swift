@@ -24,7 +24,7 @@ class ViewController: UIViewController, RevCardsView {
     
     private lazy var presenter: RevCardsPresenter = {
         let interactor = RevCardsInteractor(cardsRepository: CardsRepository())
-        return RevCardsPresenter(interactor: interactor)
+        return RevCardsPresenter(context: RevAsyncDispatcher(), interactor: interactor)
         
     }()
     

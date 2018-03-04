@@ -23,7 +23,7 @@ import kotlin.coroutines.experimental.startCoroutine
 
 class MainActivity : AppCompatActivity(), CardsView {
 
-    private val presenter = CardsPresenter(CardsInteractor(CardsRepository()))
+    private val presenter = CardsPresenter(UI, CardsInteractor(CardsRepository()))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,24 +33,13 @@ class MainActivity : AppCompatActivity(), CardsView {
 
         val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         fab.setOnClickListener {
-            val card = RevolutCardImpl("id.android", AndroidSchedulers.mainThread())
-            card.printIdAsync()
-            card.runAsync {
-                println("Card id = ${card.id}, thread = ${Thread.currentThread().name}")
-            }
+            presenter.start()
         }
     }
 
     override fun onStart() {
         super.onStart()
         presenter.attach(this)
-
-        launch(UI) { // launch new coroutine in background and continue
-            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-            println("World!") // print after delay
-        }
-        println("Hello,") // main thread continues while coroutine is delayed
-        Thread.sleep(2000L) //
     }
 
     override fun onStop() {
@@ -59,21 +48,6 @@ class MainActivity : AppCompatActivity(), CardsView {
     }
 
     override fun showCard(list: List<RevolutCard>) {
-
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-    open class EmptyContinuation(override val context: CoroutineContext) : Continuation<Any?> {
-        companion object : EmptyContinuation(context)
-
-        override fun resume(value: Any?) {}
-        override fun resumeWithException(exception: Throwable) {
-            throw exception
-        }
-    }
-
-    private fun launchCustom(context: CoroutineContext, block: suspend () -> Unit) {
-        block.startCoroutine(EmptyContinuation(context))
-    }
-
 }
