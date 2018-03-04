@@ -48,6 +48,6 @@ class MainActivity : AppCompatActivity(), CardsView {
     }
 
     override fun showCard(list: List<RevolutCard>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        println("Showing card on ${Thread.currentThread().name}")
     }
 }
