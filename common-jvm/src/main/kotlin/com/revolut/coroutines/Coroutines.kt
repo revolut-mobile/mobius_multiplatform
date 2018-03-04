@@ -12,3 +12,9 @@ import kotlin.coroutines.experimental.CoroutineContext
 actual fun launch(context: CoroutineContext, block: suspend () -> Unit) {
     async { withContext(context, block = block) }
 }
+
+actual fun withContext(context: CoroutineContext, block: suspend () -> Unit) {
+    kotlinx.coroutines.experimental.launch(context) {
+        block.invoke()
+    }
+}

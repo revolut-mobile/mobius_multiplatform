@@ -8,23 +8,15 @@ import android.view.View
 import android.widget.Button
 import com.revolut.domain.interactors.CardsInteractor
 import com.revolut.domain.models.RevolutCard
-import com.revolut.domain.models.RevolutCardImpl
 import com.revolut.domain.repositories.CardsRepository
 import com.revolut.presentation.cards.CardsPresenter
 import com.revolut.presentation.cards.CardsView
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.HandlerContext
 import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlin.coroutines.experimental.Continuation
-import kotlin.coroutines.experimental.CoroutineContext
-import kotlin.coroutines.experimental.startCoroutine
 
 class MainActivity : AppCompatActivity(), CardsView {
 
-    private val presenter = CardsPresenter(UI, CardsInteractor(CardsRepository()))
+    private val presenter = CardsPresenter(CommonPool, UI, CardsInteractor(CardsRepository()))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

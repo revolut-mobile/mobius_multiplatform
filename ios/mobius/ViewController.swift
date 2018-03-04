@@ -24,7 +24,11 @@ class ViewController: UIViewController, RevCardsView {
     
     private lazy var presenter: RevCardsPresenter = {
         let interactor = RevCardsInteractor(cardsRepository: CardsRepository())
-        return RevCardsPresenter(context: RevAsyncDispatcher(), interactor: interactor)
+        return RevCardsPresenter(
+            workerContext: RevAsyncDispatcher(),
+            uiContext: RevMainQueueDispatcher(),
+            interactor: interactor
+        )
     }()
     
     func showCard(list: [RevRevolutCard]) {
