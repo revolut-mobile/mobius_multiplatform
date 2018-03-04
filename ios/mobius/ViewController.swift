@@ -13,8 +13,8 @@ import Rev
 class CardsRepository: RevCardsRepository{
     override func getAllCardsSync() -> [RevRevolutCard] {
         return [1, 2, 3, 4, 5].map( { i -> RevRevolutCard in
-            usleep(2_000_000)
-            print("processing card \(i)")
+            usleep(1_000_000)
+            print("processing card \(i) on thread is main \(Thread.current.isMainThread)")
             return RevRevolutCardImpl(id: "id.\(i)")
         })
     }
@@ -25,10 +25,10 @@ class ViewController: UIViewController, RevCardsView {
     private lazy var presenter: RevCardsPresenter = {
         let interactor = RevCardsInteractor(cardsRepository: CardsRepository())
         return RevCardsPresenter(context: RevAsyncDispatcher(), interactor: interactor)
-        
     }()
     
     func showCard(list: [RevRevolutCard]) {
+        print("cards received on thread is main \(Thread.current.isMainThread)")
         for card in list {
             print("Card.id = " + card.id)
         }

@@ -1,6 +1,8 @@
 package com.revolut.coroutines
 
-import kotlin.coroutines.experimental.*
+import kotlin.coroutines.experimental.Continuation
+import kotlin.coroutines.experimental.CoroutineContext
+
 /**
  * Created by yatsinar on 04/03/2018.
  * Revolut
@@ -12,7 +14,7 @@ open class EmptyContinuation(override val context: CoroutineContext) : Continuat
     companion object : EmptyContinuation(context)
 
     override fun resume(value: Any?) {
-        //println("EmptyContinuation.resume")
+//        println("EmptyContinuation.resume")
     }
 
     override fun resumeWithException(exception: Throwable) {

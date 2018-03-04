@@ -8,10 +8,21 @@ import platform.darwin.*
 class AsyncDispatcher : ContinuationDispatcher() {
     private val queue = dispatch_queue_create("com.revolut.queue", null)
 
+    private var idx = 0
+
     override fun <T> dispatchResume(value: T, continuation: Continuation<T>): Boolean {
-        dispatch_async(queue) {
-            continuation.resume(value)
+        println("continuation = ${continuation::class}")
+        if (idx > 0) {
+            dispatch_async(dispatch_get_main_queue()) {
+                continuation.resume(value)
+            }
+        } else {
+            dispatch_async(queue) {
+                //        dispatch_async(dispatch_get_main_queue()) {
+                continuation.resume(value)
+            }
         }
+        idx++
         return true
     }
 
