@@ -8,8 +8,8 @@ import kotlin.coroutines.experimental.intrinsics.*
 
 actual open class CardsRepository {
 
-    open fun getAllCardsSync(): List<RevolutCard> {
-        return emptyList()
+    open fun getAllCardsSync(callback: (List<RevolutCard>) -> Unit) {
+        return callback(emptyList<RevolutCard>())
     }
 
     actual suspend fun getAllCards(): List<RevolutCard> {
@@ -19,14 +19,17 @@ actual open class CardsRepository {
              *  continuation.resume(List<RevolutCard>) must be called.
              *  If any error: continuation.error(Throwable).
              * */
+//
+//            try {
+//                val cards = getAllCardsSync()
+//                continuation.resume(cards)
+//            } catch (t: Throwable) {
+//                continuation.resumeWithException(t)
+//            }
 
-            try {
-                val cards = getAllCardsSync()
-                continuation.resume(cards)
-            } catch (t: Throwable) {
-                continuation.resumeWithException(t)
+            getAllCardsSync {
+                continuation.resume(it)
             }
-
 //            Networking.getAllCards(onSuccess -> {
 //                continuation.resume(it)
 //            }, onError-> {
