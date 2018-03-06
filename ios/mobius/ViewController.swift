@@ -9,7 +9,6 @@
 import UIKit
 import Rev
 
-
 class CardsRepository: RevCardsRepository {
     
     override func getAllCardsSync(callback: @escaping ([RevRevolutCard]) -> RevStdlibUnit) {
@@ -19,21 +18,18 @@ class CardsRepository: RevCardsRepository {
                 print("processing card \(i) on thread is \(Thread.current)")
                 return RevRevolutCardImpl(id: "id.\(i)")
             })
-            let _ = callback(result)
+            _ = callback(result)
         }
     }
 }
 
 class ViewController: UIViewController, RevCardsView {
     
-    private lazy var presenter: RevCardsPresenter = {
-        let interactor = RevCardsInteractor(cardsRepository: CardsRepository())
-        return RevCardsPresenter(
+    private lazy var presenter: RevCardsPresenter = RevCardsPresenter(
             workerContext: RevAsyncDispatcher(),
             uiContext: RevMainQueueDispatcher(),
-            interactor: interactor
+            interactor: RevCardsInteractor(cardsRepository: CardsRepository())
         )
-    }()
     
     func showCard(list: [RevRevolutCard]) {
         print("cards received on thread is main \(Thread.current)")
@@ -55,14 +51,6 @@ class ViewController: UIViewController, RevCardsView {
     @IBAction func onClick(_ sender: Any) {
         print("Click")
         presenter.start()
-        //        let item = RevRevolutCardImpl(id: "id.1")
-        //        item.printIdAsync()
-        //        item.runAsync(l: { () -> RevStdlibUnit in
-        //            print("This is background thread")
-        //            return RevStdlibUnit()
-        //
-        //        })
-        //        print("First")
     }
     
 }
