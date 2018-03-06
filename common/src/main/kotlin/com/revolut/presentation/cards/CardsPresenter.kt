@@ -5,7 +5,7 @@ import com.revolut.domain.interactors.CardsInteractor
 import com.revolut.presentation.base.BasePresenter
 import kotlin.coroutines.experimental.CoroutineContext
 
-class CardsPresenter(
+class CardsPresenter constructor(
         private val workerContext: CoroutineContext,
         private val uiContext: CoroutineContext,
         private val interactor: CardsInteractor

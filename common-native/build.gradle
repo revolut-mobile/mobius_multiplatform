@@ -19,10 +19,6 @@ konanArtifacts {
         // Print time of compilation phases (equivalent of the `--time` command line option).
         measureTime true
 
-        // Pass additional command line options to the compiler.
-        extraOpts '--time', '--verbose', 'linker'
-
-        commonSourceSets 'main'
     }
     
 }

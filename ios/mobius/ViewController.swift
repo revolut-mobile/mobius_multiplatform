@@ -10,18 +10,16 @@ import UIKit
 import Rev
 
 
-class CardsRepository: RevCardsRepository{
+class CardsRepository: RevCardsRepository {
     
     override func getAllCardsSync(callback: @escaping ([RevRevolutCard]) -> RevStdlibUnit) {
         DispatchQueue.global(qos: .background).async {
             let result = [1, 2, 3, 4, 5].map( { i -> RevRevolutCard in
                 usleep(1_000_000)
-                print("processing card \(i) on thread is main \(Thread.current.isMainThread)")
+                print("processing card \(i) on thread is \(Thread.current)")
                 return RevRevolutCardImpl(id: "id.\(i)")
             })
-            DispatchQueue.main.async {
-                let _ = callback(result)
-            }
+            let _ = callback(result)
         }
     }
 }
@@ -38,7 +36,7 @@ class ViewController: UIViewController, RevCardsView {
     }()
     
     func showCard(list: [RevRevolutCard]) {
-        print("cards received on thread is main \(Thread.current.isMainThread)")
+        print("cards received on thread is main \(Thread.current)")
         for card in list {
             print("Card.id = " + card.id)
         }

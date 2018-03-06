@@ -10,8 +10,6 @@ import kotlin.coroutines.experimental.CoroutineContext
  */
 expect fun launch(context: CoroutineContext, block: suspend () -> Unit)
 
-expect fun withContext(context: CoroutineContext, block: suspend () -> Unit)
-
 open class EmptyContinuation(override val context: CoroutineContext) : Continuation<Any?> {
 
     companion object : EmptyContinuation(context)
