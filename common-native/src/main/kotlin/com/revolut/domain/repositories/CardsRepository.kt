@@ -8,15 +8,13 @@ import kotlin.coroutines.experimental.intrinsics.*
 
 actual open class CardsRepository {
 
-    open fun getAllCardsSync(callback: (List<RevolutCard>) -> Unit) {
-        return callback(emptyList<RevolutCard>())
+    open fun getAllCardsSync(callback: Continuation<List<RevolutCard>>) {
+        return callback.resume(emptyList<RevolutCard>())
     }
 
     actual suspend fun getAllCards(): List<RevolutCard> {
         return suspendCoroutineOrReturn { continuation ->
-            getAllCardsSync {
-                continuation.resume(it)
-            }
+            getAllCardsSync(continuation)
             COROUTINE_SUSPENDED
         }
     }

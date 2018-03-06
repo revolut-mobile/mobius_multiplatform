@@ -11,14 +11,14 @@ import Rev
 
 class CardsRepository: RevCardsRepository {
     
-    override func getAllCardsSync(callback: @escaping ([RevRevolutCard]) -> RevStdlibUnit) {
+    override func getAllCardsSync(callback: RevStdlibContinuation) {
         DispatchQueue.global(qos: .background).async {
             let result = [1, 2, 3, 4, 5].map( { i -> RevRevolutCard in
                 usleep(1_000_000)
                 print("processing card \(i) on thread is \(Thread.current)")
                 return RevRevolutCardImpl(id: "id.\(i)")
             })
-            _ = callback(result)
+            callback.resume(value: result)
         }
     }
 }

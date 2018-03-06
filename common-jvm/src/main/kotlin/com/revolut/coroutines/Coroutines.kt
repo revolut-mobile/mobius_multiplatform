@@ -10,5 +10,7 @@ import kotlin.coroutines.experimental.CoroutineContext
  * All rights reserved
  */
 actual fun launch(context: CoroutineContext, block: suspend () -> Unit) {
-    async { withContext(context, block = block) }
+    async {
+        withContext(context, block = block)
+    }
 }
