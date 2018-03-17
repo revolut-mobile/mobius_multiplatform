@@ -8,7 +8,11 @@ import kotlin.coroutines.experimental.CoroutineContext
  * Revolut
  * All rights reserved
  */
-expect fun launch(context: CoroutineContext, block: suspend () -> Unit)
+expect fun <T> launch(context: CoroutineContext, block: suspend () -> T): Deferred<T>
+
+expect class Deferred<T> {
+    suspend fun await(): T
+}
 
 open class EmptyContinuation(override val context: CoroutineContext) : Continuation<Any?> {
 
