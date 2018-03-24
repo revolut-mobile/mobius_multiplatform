@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.revolut.data.Network
-import com.revolut.domain.interactors.AllMarketsTickersInteractor
+import com.revolut.domain.interactors.AllMarketsTickersSimultaneousInteractor
 import com.revolut.domain.repositories.ExchangeRepository
 import com.revolut.presentation.exchange.ExchangePresenter
 import com.revolut.presentation.exchange.ExchangeView
@@ -18,7 +18,7 @@ import kotlinx.coroutines.experimental.android.UI
  */
 class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
-    private val presenter = ExchangePresenter(UI, AllMarketsTickersInteractor(ExchangeRepository(Network().bittrexApi), CommonPool))
+    private val presenter = ExchangePresenter(UI, AllMarketsTickersSimultaneousInteractor(ExchangeRepository(Network().bittrexApi), CommonPool))
 
     override fun showMarketTickers(string: String) {
         Log.d("Markets", string)
