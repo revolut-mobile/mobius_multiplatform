@@ -17,7 +17,7 @@ class AllMarketsTickersSimultaneousInteractor(
         val deferredTickersMap = mutableMapOf<Market, Deferred<Ticker>>()
 
         exchangeRepository.getAllMarkets()
-                .subList(0, 10)
+                .subList(0, 50)
                 .forEach { market ->
                     deferredTickersMap[market] = launch(workerContext) {
                         exchangeRepository.getTicker(market)

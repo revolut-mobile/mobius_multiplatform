@@ -13,4 +13,6 @@ interface ExchangeView: BaseView {
 
     fun showMarketTickers(tickers: Map<Market, Ticker>)
 
+    fun showLoading(loading: Boolean)
+
 }

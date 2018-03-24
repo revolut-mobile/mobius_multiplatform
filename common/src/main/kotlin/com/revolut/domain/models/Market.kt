@@ -1,10 +1,6 @@
 package com.revolut.domain.models
 
-/**
- * Created by yatsinar on 17/03/2018.
- * Revolut
- * All rights reserved
- */
+
 data class Market(
         val marketCurrency: String,
         val marketCurrencyLong: String,
@@ -16,3 +12,5 @@ data class Market(
         val created: String,
         val logoUrl: String?
 )
+
+
