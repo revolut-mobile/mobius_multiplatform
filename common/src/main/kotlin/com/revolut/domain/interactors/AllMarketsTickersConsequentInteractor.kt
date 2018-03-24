@@ -8,7 +8,7 @@ class AllMarketsTickersConsequentInteractor(
         private val exchangeRepository: ExchangeRepository
 ) : AllMarketsTickersInteractor {
 
-    suspend override fun getTickersForAllMarkets(): Map<Market, Ticker> {
+    override suspend fun getTickersForAllMarkets(): Map<Market, Ticker> {
         val tickersMap = mutableMapOf<Market, Ticker>()
 
         exchangeRepository.getAllMarkets()

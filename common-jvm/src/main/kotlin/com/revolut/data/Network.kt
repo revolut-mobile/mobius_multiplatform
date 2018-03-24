@@ -19,6 +19,6 @@ class Network {
                 .build()
     }
 
-    val bittrexApi by lazy {retrofit.create(BittrexApi::class.java) }
+    val bittrexApi by lazy { retrofit.create(BittrexApi::class.java) }
 
 }
