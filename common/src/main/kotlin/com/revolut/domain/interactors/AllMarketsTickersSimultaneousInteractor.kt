@@ -7,29 +7,24 @@ import com.revolut.domain.models.Ticker
 import com.revolut.domain.repositories.ExchangeRepository
 import kotlin.coroutines.experimental.CoroutineContext
 
-/**
- * Created by yatsinar on 17/03/2018.
- * Revolut
- * All rights reserved
- */
+
 class AllMarketsTickersSimultaneousInteractor(
         private val exchangeRepository: ExchangeRepository,
         private val workerContext: CoroutineContext
-): AllMarketsTickersInteractor {
+) : AllMarketsTickersInteractor {
 
     override suspend fun getTickersForAllMarkets(): Map<Market, Ticker> {
-        val mutableMap = mutableMapOf<Market, Deferred<Ticker>>()
+        val deferredTickersMap = mutableMapOf<Market, Deferred<Ticker>>()
 
-        exchangeRepository.getAllMarkets().subList(0, 10).forEach { market ->
-            val ticker = launch(workerContext) {
-                val ticker = exchangeRepository.getTicker(market)
-                ticker
-            }
-            mutableMap[market] = ticker
-        }
+        exchangeRepository.getAllMarkets()
+                .subList(0, 10)
+                .forEach { market ->
+                    deferredTickersMap[market] = launch(workerContext) {
+                        exchangeRepository.getTicker(market)
+                    }
+                }
 
-        return mutableMap.mapValues { it.value.await() }
+        return deferredTickersMap.mapValues { it.value.await() }
     }
-
 
 }

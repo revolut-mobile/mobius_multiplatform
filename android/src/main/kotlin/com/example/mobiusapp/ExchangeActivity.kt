@@ -2,26 +2,27 @@ package com.example.mobiusapp
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.revolut.data.Network
 import com.revolut.domain.interactors.AllMarketsTickersSimultaneousInteractor
+import com.revolut.domain.models.Market
+import com.revolut.domain.models.Ticker
 import com.revolut.domain.repositories.ExchangeRepository
 import com.revolut.presentation.exchange.ExchangePresenter
 import com.revolut.presentation.exchange.ExchangeView
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 
-/**
- * Created by yatsinar on 17/03/2018.
- * Revolut
- * All rights reserved
- */
+
 class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
-    private val presenter = ExchangePresenter(UI, AllMarketsTickersSimultaneousInteractor(ExchangeRepository(Network().bittrexApi), CommonPool))
+    private val presenter = ExchangePresenter(
+            UI,
+            AllMarketsTickersSimultaneousInteractor(
+                    ExchangeRepository(Network().bittrexApi), CommonPool)
+    )
 
-    override fun showMarketTickers(string: String) {
-        Log.d("Markets", string)
+    override fun showMarketTickers(tickers: Map<Market, Ticker>) {
+        TODO()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

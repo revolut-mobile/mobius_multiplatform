@@ -1,5 +1,7 @@
 package com.revolut.presentation.exchange
 
+import com.revolut.domain.models.Market
+import com.revolut.domain.models.Ticker
 import com.revolut.presentation.base.BaseView
 
 /**
@@ -9,6 +11,6 @@ import com.revolut.presentation.base.BaseView
  */
 interface ExchangeView: BaseView {
 
-    fun showMarketTickers(string: String)
+    fun showMarketTickers(tickers: Map<Market, Ticker>)
 
 }
