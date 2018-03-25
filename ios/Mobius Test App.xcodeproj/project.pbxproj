@@ -15,15 +15,21 @@
 		6756AC742066E30600CFEF41 /* ExchangeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC732066E30600CFEF41 /* ExchangeRepository.swift */; };
 		6756AC752066E30600CFEF41 /* ExchangeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC732066E30600CFEF41 /* ExchangeRepository.swift */; };
 		6756AC762066E30600CFEF41 /* ExchangeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC732066E30600CFEF41 /* ExchangeRepository.swift */; };
-		6756AC792066E35E00CFEF41 /* TickersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC782066E35E00CFEF41 /* TickersInteractor.swift */; };
-		6756AC7A2066E35E00CFEF41 /* TickersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC782066E35E00CFEF41 /* TickersInteractor.swift */; };
-		6756AC7B2066E35E00CFEF41 /* TickersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC782066E35E00CFEF41 /* TickersInteractor.swift */; };
 		6756AC7F2066E3AC00CFEF41 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC7E2066E3AC00CFEF41 /* Ticker.swift */; };
 		6756AC802066E3AC00CFEF41 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC7E2066E3AC00CFEF41 /* Ticker.swift */; };
 		6756AC812066E3AC00CFEF41 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC7E2066E3AC00CFEF41 /* Ticker.swift */; };
 		6756AC842066EC3C00CFEF41 /* Bittrex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC832066EC3C00CFEF41 /* Bittrex.swift */; };
 		6756AC852066EC3C00CFEF41 /* Bittrex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC832066EC3C00CFEF41 /* Bittrex.swift */; };
 		6756AC862066EC3C00CFEF41 /* Bittrex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC832066EC3C00CFEF41 /* Bittrex.swift */; };
+		675C7087206825BC00BE8A38 /* MapperFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C7086206825BC00BE8A38 /* MapperFactory.swift */; };
+		675C70882068288200BE8A38 /* MapperFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C7086206825BC00BE8A38 /* MapperFactory.swift */; };
+		675C70892068288300BE8A38 /* MapperFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C7086206825BC00BE8A38 /* MapperFactory.swift */; };
+		675C708C2068306C00BE8A38 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C708B2068306C00BE8A38 /* Assembly.swift */; };
+		675C708D2068306C00BE8A38 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C708B2068306C00BE8A38 /* Assembly.swift */; };
+		675C708E2068306C00BE8A38 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C708B2068306C00BE8A38 /* Assembly.swift */; };
+		675C70952068375D00BE8A38 /* ViewControllerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */; };
+		675C70962068375D00BE8A38 /* ViewControllerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */; };
+		675C70972068375D00BE8A38 /* ViewControllerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */; };
 		6770DB54204F33FA008420E6 /* Rev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6770DB53204F33FA008420E6 /* Rev.framework */; };
 		6770DB55204F33FA008420E6 /* Rev.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6770DB53204F33FA008420E6 /* Rev.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67D7707F204ED7DF001D7F59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671219062039E61100949A2A /* ViewController.swift */; };
@@ -91,9 +97,11 @@
 		6712190E2039E61100949A2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		671219102039E61100949A2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6756AC732066E30600CFEF41 /* ExchangeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRepository.swift; sourceTree = "<group>"; };
-		6756AC782066E35E00CFEF41 /* TickersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickersInteractor.swift; sourceTree = "<group>"; };
 		6756AC7E2066E3AC00CFEF41 /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
 		6756AC832066EC3C00CFEF41 /* Bittrex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bittrex.swift; sourceTree = "<group>"; };
+		675C7086206825BC00BE8A38 /* MapperFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapperFactory.swift; sourceTree = "<group>"; };
+		675C708B2068306C00BE8A38 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAssembly.swift; sourceTree = "<group>"; };
 		6770DB53204F33FA008420E6 /* Rev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rev.framework; path = "../common-native/build/konan/bin/iphone_sim/Rev.framework"; sourceTree = "<group>"; };
 		67AE8335204EF3710073CF00 /* Rev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rev.framework; path = "../common-native/build/konan/bin/iphone_sim/Rev.framework"; sourceTree = "<group>"; };
 		67D7708E204ED7DF001D7F59 /* mobius-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mobius-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +164,7 @@
 		671219032039E61100949A2A /* mobius */ = {
 			isa = PBXGroup;
 			children = (
+				675C708A2068305A00BE8A38 /* di */,
 				6756AC7C2066E39200CFEF41 /* domain */,
 				6756AC712066E2DE00CFEF41 /* data */,
 				6756AC6A2066D4CA00CFEF41 /* ui */,
@@ -180,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				671219062039E61100949A2A /* ViewController.swift */,
+				675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -188,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				6756AC822066EC2500CFEF41 /* api */,
-				6756AC772066E34C00CFEF41 /* interactors */,
 				6756AC722066E2E700CFEF41 /* repository */,
 			);
 			path = data;
@@ -200,14 +209,6 @@
 				6756AC732066E30600CFEF41 /* ExchangeRepository.swift */,
 			);
 			name = repository;
-			sourceTree = "<group>";
-		};
-		6756AC772066E34C00CFEF41 /* interactors */ = {
-			isa = PBXGroup;
-			children = (
-				6756AC782066E35E00CFEF41 /* TickersInteractor.swift */,
-			);
-			path = interactors;
 			sourceTree = "<group>";
 		};
 		6756AC7C2066E39200CFEF41 /* domain */ = {
@@ -230,8 +231,17 @@
 			isa = PBXGroup;
 			children = (
 				6756AC832066EC3C00CFEF41 /* Bittrex.swift */,
+				675C7086206825BC00BE8A38 /* MapperFactory.swift */,
 			);
 			path = api;
+			sourceTree = "<group>";
+		};
+		675C708A2068305A00BE8A38 /* di */ = {
+			isa = PBXGroup;
+			children = (
+				675C708B2068306C00BE8A38 /* Assembly.swift */,
+			);
+			path = di;
 			sourceTree = "<group>";
 		};
 		C4C6E0591946093831FCB272 /* Pods */ = {
@@ -488,11 +498,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-mobius-sim/Pods-mobius-sim-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EasyDi/EasyDi.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyDi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,11 +538,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-mobius-dev/Pods-mobius-dev-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EasyDi/EasyDi.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyDi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,11 +560,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-mobius/Pods-mobius-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EasyDi/EasyDi.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyDi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,10 +582,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6756AC742066E30600CFEF41 /* ExchangeRepository.swift in Sources */,
+				675C708C2068306C00BE8A38 /* Assembly.swift in Sources */,
 				671219072039E61100949A2A /* ViewController.swift in Sources */,
 				6756AC842066EC3C00CFEF41 /* Bittrex.swift in Sources */,
+				675C70952068375D00BE8A38 /* ViewControllerAssembly.swift in Sources */,
 				6756AC7F2066E3AC00CFEF41 /* Ticker.swift in Sources */,
-				6756AC792066E35E00CFEF41 /* TickersInteractor.swift in Sources */,
+				675C70882068288200BE8A38 /* MapperFactory.swift in Sources */,
 				671219052039E61100949A2A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,10 +597,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6756AC752066E30600CFEF41 /* ExchangeRepository.swift in Sources */,
+				675C708D2068306C00BE8A38 /* Assembly.swift in Sources */,
 				67D7707F204ED7DF001D7F59 /* ViewController.swift in Sources */,
 				6756AC852066EC3C00CFEF41 /* Bittrex.swift in Sources */,
+				675C70962068375D00BE8A38 /* ViewControllerAssembly.swift in Sources */,
 				6756AC802066E3AC00CFEF41 /* Ticker.swift in Sources */,
-				6756AC7A2066E35E00CFEF41 /* TickersInteractor.swift in Sources */,
+				675C70892068288300BE8A38 /* MapperFactory.swift in Sources */,
 				67D77080204ED7DF001D7F59 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,10 +612,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6756AC762066E30600CFEF41 /* ExchangeRepository.swift in Sources */,
+				675C708E2068306C00BE8A38 /* Assembly.swift in Sources */,
 				67D770A8204EDA86001D7F59 /* ViewController.swift in Sources */,
 				6756AC862066EC3C00CFEF41 /* Bittrex.swift in Sources */,
+				675C70972068375D00BE8A38 /* ViewControllerAssembly.swift in Sources */,
 				6756AC812066E3AC00CFEF41 /* Ticker.swift in Sources */,
-				6756AC7B2066E35E00CFEF41 /* TickersInteractor.swift in Sources */,
+				675C7087206825BC00BE8A38 /* MapperFactory.swift in Sources */,
 				67D770A9204EDA86001D7F59 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

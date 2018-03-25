@@ -11,27 +11,24 @@ import Rev
 
 class ViewController: UITableViewController, RevExchangeView {
     
-    weak var activityIndicatorView: UIActivityIndicatorView?
+    var presenter: RevExchangePresenter?
     var items = [Ticker]()
     
-    private lazy var presenter = RevExchangePresenter(
-        uiContext: RevMainQueueDispatcher(),
-        allMarketsTickersInteractor: TickersInteractor(exchangeRepository: ExchangeRepository(api: BittrexApi()))
-    )
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        ViewControllerAssembly.instance().inject(into: self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-        tableView.backgroundView = activityIndicatorView
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.activityIndicatorView = activityIndicatorView
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "activityIndicator")
-        presenter.attach(view: self)
+        tableView.separatorStyle = .none
+        presenter?.attach(view: self)
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        presenter.detach()
+        presenter?.detach()
     }
     
     func showMarketTickers(tickers: [RevMarket : RevTicker]) {
@@ -44,9 +41,9 @@ class ViewController: UITableViewController, RevExchangeView {
     
     func showLoading(loading: Bool) {
         if (loading) {
-            self.activityIndicatorView?.startAnimating()
+            refreshControl?.beginRefreshing()
         } else {
-            self.activityIndicatorView?.stopAnimating()
+            refreshControl?.endRefreshing()
         }
     }
     
@@ -60,6 +57,10 @@ class ViewController: UITableViewController, RevExchangeView {
         cell.textLabel?.text = ticker.title
         cell.detailTextLabel?.text = ticker.subTitle
         return cell
+    }
+    
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        self.presenter?.refresh()
     }
     
 }

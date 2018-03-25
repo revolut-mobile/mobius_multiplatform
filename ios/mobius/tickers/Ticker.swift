@@ -9,7 +9,7 @@
 import Foundation
 import Rev
 
-class Ticker: NSObject {
+class Ticker {
     let title: String
     let subTitle: String
     

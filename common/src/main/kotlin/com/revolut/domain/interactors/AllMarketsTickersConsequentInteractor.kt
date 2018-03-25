@@ -4,20 +4,24 @@ import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
 import com.revolut.domain.repositories.ExchangeRepository
 
+@Suppress("unused")
 class AllMarketsTickersConsequentInteractor(
         private val exchangeRepository: ExchangeRepository
 ) : AllMarketsTickersInteractor {
 
-    override suspend fun getTickersForAllMarkets(): Map<Market, Ticker> {
-        val tickersMap = mutableMapOf<Market, Ticker>()
+    private val lastTickers = mutableMapOf<Market, Ticker>()
 
-        exchangeRepository.getAllMarkets()
-                .subList(0, 10)
-                .forEach { market ->
-                    tickersMap[market] = exchangeRepository.getTicker(market)
-                }
-
-        return tickersMap
-    }
+    override suspend fun getTickersForAllMarkets(): Map<Market, Ticker> = exchangeRepository.getAllMarkets()
+            .subList(0, 20)
+            .filterNot { lastTickers.containsKey(it) }
+            .take(10)
+            .map { market -> market to exchangeRepository.getTicker(market) }
+            .sortedBy { it.first.marketName }
+            .associateBy({ (market, _) -> market }, { (_, ticker) -> ticker })
+            .also {
+                lastTickers.clear()
+                lastTickers.putAll(it)
+            }
 
 }
+

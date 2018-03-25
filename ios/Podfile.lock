@@ -1,15 +1,18 @@
 PODS:
   - Alamofire (4.7.0)
+  - EasyDi (1.4.0)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - EasyDi
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  EasyDi: 84cfe04e906c0f463b1b1d76ed4be3db446f9702
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: ee5ec4f09b2d1f1e4c04f87d4aa8cca9a006f1ad
+PODFILE CHECKSUM: f51bddf53c545f6d5bc34f051609e4264c5bd7c4
 
 COCOAPODS: 1.4.0

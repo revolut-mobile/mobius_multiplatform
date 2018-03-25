@@ -10,4 +10,8 @@ actual class Deferred<T>(
         return wrappedDeferred.await()
     }
 
+    actual fun cancel() {
+        wrappedDeferred.cancel()
+    }
+
 }

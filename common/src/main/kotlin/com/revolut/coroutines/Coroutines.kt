@@ -12,6 +12,7 @@ expect fun <T> launch(context: CoroutineContext, block: suspend () -> T): Deferr
 
 expect class Deferred<T> {
     suspend fun await(): T
+    fun cancel()
 }
 
 open class EmptyContinuation(override val context: CoroutineContext) : Continuation<Any?> {

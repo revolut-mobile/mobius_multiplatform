@@ -6,16 +6,19 @@ target 'mobius' do
 inherit! :search_paths
 pod 'Alamofire', '~> 4.7'
 pod 'SwiftyJSON'
+pod 'EasyDi'
 end
 
 target 'mobius-dev' do
 inherit! :search_paths
 pod 'Alamofire', '~> 4.7'
 pod 'SwiftyJSON'
+pod 'EasyDi'
 end
 
 target 'mobius-sim' do
 inherit! :search_paths
 pod 'Alamofire', '~> 4.7'
 pod 'SwiftyJSON'
+pod 'EasyDi'
 end
