@@ -11,7 +11,7 @@ import Rev
 
 class ViewController: UITableViewController, RevExchangeView {
     
-    var presenter: RevExchangePresenter?
+    var presenter: RevExchangePresenter!
     var items = [Ticker]()
     
     override func awakeFromNib() {
@@ -22,16 +22,16 @@ class ViewController: UITableViewController, RevExchangeView {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
-        presenter?.attach(view: self)
-        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        presenter.attach(view: self)
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        presenter?.detach()
+        presenter.detach()
     }
     
-    func showMarketTickers(tickers: [RevMarket : RevTicker]) {
+    func showMarket(tickers: [RevMarket : RevTicker]) {
         items.removeAll()
         items += tickers.map { (arg) -> Ticker in
             return Ticker(market: arg.key, ticker: arg.value)
@@ -42,6 +42,7 @@ class ViewController: UITableViewController, RevExchangeView {
     func showLoading(loading: Bool) {
         if (loading) {
             refreshControl?.beginRefreshing()
+            refreshControl?.isHidden = false
         } else {
             refreshControl?.endRefreshing()
         }
@@ -60,7 +61,7 @@ class ViewController: UITableViewController, RevExchangeView {
     }
     
     @objc func refresh(refreshControl: UIRefreshControl) {
-        self.presenter?.refresh()
+        presenter.refresh()
     }
     
 }

@@ -11,7 +11,7 @@ import com.revolut.presentation.base.BaseView
  */
 interface ExchangeView: BaseView {
 
-    fun showMarketTickers(tickers: Map<Market, Ticker>)
+    fun showMarket(tickers: Map<Market, Ticker>)
 
     fun showLoading(loading: Boolean)
 

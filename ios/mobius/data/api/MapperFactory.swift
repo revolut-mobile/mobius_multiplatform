@@ -69,4 +69,3 @@ class MapperFactory {
     static let tickersMapper = TickersMapper()
     
 }
-

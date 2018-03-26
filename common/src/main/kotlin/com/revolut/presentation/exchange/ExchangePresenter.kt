@@ -24,7 +24,7 @@ class ExchangePresenter(
             view?.showLoading(true)
             val markets = allMarketsTickersInteractor.getTickersForAllMarkets()
             view?.showLoading(false)
-            view?.showMarketTickers(markets)
+            view?.showMarket(markets)
         }
     }
 

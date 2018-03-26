@@ -34,7 +34,7 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
             allMarketsTickersInteractor = allMarketTickersInteractor
     )
 
-    override fun showMarketTickers(tickers: Map<Market, Ticker>) {
+    override fun showMarket(tickers: Map<Market, Ticker>) {
         adapter.items = tickers.map { TickerItemDelegate.MarketTicker(it.key, it.value) }
         adapter.notifyDataSetChanged()
     }
