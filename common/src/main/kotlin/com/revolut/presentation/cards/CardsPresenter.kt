@@ -1,6 +1,6 @@
 package com.revolut.presentation.cards
 
-import com.revolut.coroutines.launch
+import com.revolut.coroutines.async
 import com.revolut.domain.interactors.CardsInteractor
 import com.revolut.presentation.base.BasePresenter
 import kotlin.coroutines.experimental.CoroutineContext
@@ -21,7 +21,7 @@ class CardsPresenter constructor(
 
     fun start() {
         println("Before start")
-        launch(uiContext) {
+        async(uiContext) {
             val cards = interactor.getAllCards()
             view?.showCard(cards)
         }

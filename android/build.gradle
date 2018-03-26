@@ -40,7 +40,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile project(':common-jvm')
+    implementation project(':common-android')
+
     compile 'com.android.support:appcompat-v7:27.0.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:27.0.2'
@@ -50,6 +51,7 @@ dependencies {
 
     //Coroutines for Android (contexts and extensions)
     compile "org.jetbrains.anko:anko-coroutines:$anko_version"
+
 }
 
 kotlin {

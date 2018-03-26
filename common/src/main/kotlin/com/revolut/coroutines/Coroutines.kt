@@ -8,7 +8,7 @@ import kotlin.coroutines.experimental.CoroutineContext
  * Revolut
  * All rights reserved
  */
-expect fun <T> launch(context: CoroutineContext, block: suspend () -> T): Deferred<T>
+expect fun <T> async(context: CoroutineContext, block: suspend () -> T): Deferred<T>
 
 expect class Deferred<out T> {
     suspend fun await(): T

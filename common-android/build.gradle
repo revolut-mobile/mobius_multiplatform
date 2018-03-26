@@ -1,6 +1,9 @@
-apply plugin: 'kotlin-platform-jvm'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-platform-android'
 
 dependencies {
+    expectedBy project(":common")
+
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.2"
     compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.8'
@@ -8,7 +11,21 @@ dependencies {
     compile 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.google.code.gson:gson:2.8.2'
-    expectedBy project(":common")
+}
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release
+    }
 }
 
 kotlin {

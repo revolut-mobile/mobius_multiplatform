@@ -1,7 +1,7 @@
 package com.revolut.domain.interactors
 
 import com.revolut.coroutines.Deferred
-import com.revolut.coroutines.launch
+import com.revolut.coroutines.async
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
 import com.revolut.domain.repositories.ExchangeRepository
@@ -19,7 +19,7 @@ class AllMarketsTickersSimultaneousInteractor(
         exchangeRepository.getAllMarkets()
                 .subList(0, 50)
                 .forEach { market ->
-                    deferredTickersMap[market] = launch(workerContext) {
+                    deferredTickersMap[market] = async(workerContext) {
                         exchangeRepository.getTicker(market)
                     }
                 }

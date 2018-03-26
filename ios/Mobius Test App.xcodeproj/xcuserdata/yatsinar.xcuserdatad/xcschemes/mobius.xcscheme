@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "671219002039E61100949A2A"
-               BuildableName = "mobius.app"
-               BlueprintName = "mobius"
+               BuildableName = "mobius-sim.app"
+               BlueprintName = "mobius-sim"
                ReferencedContainer = "container:Mobius Test App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,8 +34,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "671219002039E61100949A2A"
-            BuildableName = "mobius.app"
-            BlueprintName = "mobius"
+            BuildableName = "mobius-sim.app"
+            BlueprintName = "mobius-sim"
             ReferencedContainer = "container:Mobius Test App.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -58,8 +58,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "671219002039E61100949A2A"
-            BuildableName = "mobius.app"
-            BlueprintName = "mobius"
+            BuildableName = "mobius-sim.app"
+            BlueprintName = "mobius-sim"
             ReferencedContainer = "container:Mobius Test App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -77,8 +77,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "671219002039E61100949A2A"
-            BuildableName = "mobius.app"
-            BlueprintName = "mobius"
+            BuildableName = "mobius-sim.app"
+            BlueprintName = "mobius-sim"
             ReferencedContainer = "container:Mobius Test App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
