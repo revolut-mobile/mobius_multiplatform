@@ -2,7 +2,7 @@ package com.revolut.coroutines
 
 import kotlinx.coroutines.experimental.Deferred
 
-actual class Deferred<T>(
+actual class Deferred<out T>(
         private val wrappedDeferred: Deferred<T>
 ) {
 

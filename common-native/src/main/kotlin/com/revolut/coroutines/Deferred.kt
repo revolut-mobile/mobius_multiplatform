@@ -2,7 +2,7 @@ package com.revolut.coroutines
 
 import kotlin.coroutines.experimental.*
 
-actual class Deferred<T>(
+actual class Deferred<out T>(
         private val context: CoroutineContext,
         private val block: suspend () -> T
 ) {
