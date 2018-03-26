@@ -21,5 +21,4 @@ class MainQueueDispatcher : ContinuationDispatcher() {
         }
         return false
     }
-
 }

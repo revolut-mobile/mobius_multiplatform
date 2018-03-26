@@ -6,6 +6,7 @@ import com.revolut.domain.interactors.AllMarketsTickersInteractor
 import com.revolut.presentation.base.BasePresenter
 import kotlin.coroutines.experimental.CoroutineContext
 
+@Suppress("MemberVisibilityCanBePrivate")
 class ExchangePresenter(
         private val uiContext: CoroutineContext,
         private val allMarketsTickersInteractor: AllMarketsTickersInteractor

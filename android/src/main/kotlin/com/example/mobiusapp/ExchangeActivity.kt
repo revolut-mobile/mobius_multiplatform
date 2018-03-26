@@ -39,6 +39,16 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
         adapter.notifyDataSetChanged()
     }
 
+    override fun onStart() {
+        super.onStart()
+        presenter.attach(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        presenter.detach()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_echange)
@@ -51,14 +61,6 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
         loadingProgress.visibility = if (loading) VISIBLE else GONE
     }
 
-    override fun onStart() {
-        super.onStart()
-        presenter.attach(this)
-    }
 
-    override fun onStop() {
-        super.onStop()
-        presenter.detach()
-    }
 
 }

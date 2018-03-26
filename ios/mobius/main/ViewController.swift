@@ -23,7 +23,6 @@ class ViewController: UITableViewController, RevExchangeView {
         super.viewDidLoad()
         tableView.separatorStyle = .none
         presenter.attach(view: self)
-        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -48,6 +47,10 @@ class ViewController: UITableViewController, RevExchangeView {
         }
     }
     
+    @IBAction func refresh(refreshControl: UIRefreshControl) {
+        presenter.refresh()
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -60,9 +63,6 @@ class ViewController: UITableViewController, RevExchangeView {
         return cell
     }
     
-    @objc func refresh(refreshControl: UIRefreshControl) {
-        presenter.refresh()
-    }
     
 }
 

@@ -5,11 +5,6 @@ import com.revolut.domain.models.Ticker
 import kotlin.coroutines.experimental.*
 import kotlin.coroutines.experimental.intrinsics.*
 
-/**
- * Created by yatsinar on 17/03/2018.
- * Revolut
- * All rights reserved
- */
 actual open class ExchangeRepository {
 
     open fun getAllMarkets(callback: Continuation<List<Market>>) {
