@@ -10,7 +10,7 @@ import kotlin.coroutines.experimental.CoroutineContext
  */
 expect fun <T> launch(context: CoroutineContext, block: suspend () -> T): Deferred<T>
 
-expect class Deferred<T> {
+expect class Deferred<out T> {
     suspend fun await(): T
     fun cancel()
 }
