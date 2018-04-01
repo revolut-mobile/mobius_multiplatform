@@ -30,10 +30,10 @@ class ViewController: UITableViewController, RevExchangeView {
         presenter.detach()
     }
     
-    func showMarket(tickers: [RevMarket : RevTicker]) {
+    func showMarkets(tickers: [RevStdlibPair]) {
         items.removeAll()
         items += tickers.map { (arg) -> Ticker in
-            return Ticker(market: arg.key, ticker: arg.value)
+            return Ticker(market: arg.first as! RevMarket, ticker: arg.second as! RevTicker)
         }
         tableView.reloadData()
     }

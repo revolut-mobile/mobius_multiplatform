@@ -8,7 +8,6 @@ import platform.darwin.*
 class MainQueueDispatcher : ContinuationDispatcher() {
 
     override fun <T> dispatchResume(value: T, continuation: Continuation<T>): Boolean {
-        println("continuation")
         dispatch_async(dispatch_get_main_queue()) {
             continuation.resume(value)
         }
@@ -16,8 +15,6 @@ class MainQueueDispatcher : ContinuationDispatcher() {
     }
 
     override fun dispatchResumeWithException(exception: Throwable, continuation: Continuation<*>): Boolean {
-        println("continuation")
-
         dispatch_async(dispatch_get_main_queue()) {
             continuation.resumeWithException(exception)
         }

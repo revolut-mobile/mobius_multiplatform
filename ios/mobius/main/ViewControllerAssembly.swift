@@ -18,7 +18,7 @@ class ViewControllerAssembly: Assembly {
         defineInjection(into: viewController) {
             $0.presenter = RevExchangePresenter(
                     uiContext: RevMainQueueDispatcher(),
-                    allMarketsTickersInteractor: self.serviceAssembly.exchangeInteractor
+                    interactor: self.serviceAssembly.exchangeInteractor
             )
             return $0
         }
