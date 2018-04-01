@@ -1,11 +1,14 @@
 allprojects {
 
     buildscript {
-        ext.kotlin_version = '1.2.30'
+        ext.kotlin_version = '1.2.40-eap-16'
+        ext.kotlin_native_version = '0.6.2'
+        ext.anko_version = '0.10.1'
 
         repositories {
             google()
             jcenter()
+            maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
             maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
         }
 
@@ -16,11 +19,10 @@ allprojects {
         }
     }
 
-
-
     repositories {
         google()
         jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
 }
 
