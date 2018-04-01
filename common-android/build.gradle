@@ -26,6 +26,9 @@ android {
     buildTypes {
         release
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 kotlin {
