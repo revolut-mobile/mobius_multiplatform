@@ -10,6 +10,6 @@ import com.revolut.domain.models.Ticker
  */
 interface AllMarketsTickersInteractor {
 
-    suspend fun getTickersForAllMarkets(): Map<Market, Ticker>
+    suspend fun getTickersForAllMarkets(): List<Pair<Market, Ticker>>
 
 }

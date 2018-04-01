@@ -1,6 +1,5 @@
 package com.revolut.domain.interactors
 
-import com.revolut.coroutines.Deferred
 import com.revolut.coroutines.async
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
@@ -9,22 +8,19 @@ import kotlin.coroutines.experimental.CoroutineContext
 
 
 class AllMarketsTickersSimultaneousInteractor(
-        private val exchangeRepository: ExchangeRepository,
-        private val workerContext: CoroutineContext
+        private val repository: ExchangeRepository,
+        private val context: CoroutineContext
 ) : AllMarketsTickersInteractor {
 
-    override suspend fun getTickersForAllMarkets(): Map<Market, Ticker> {
-        val deferredTickersMap = mutableMapOf<Market, Deferred<Ticker>>()
-
-        exchangeRepository.getAllMarkets()
-                .subList(0, 50)
-                .forEach { market ->
-                    deferredTickersMap[market] = async(workerContext) {
-                        exchangeRepository.getTicker(market)
+    override suspend fun getTickersForAllMarkets(): List<Pair<Market, Ticker>> {
+        return repository.getAllMarkets()
+                .subList(0, 20)
+                .map { market ->
+                    market to async(context) {
+                        repository.getTicker(market)
                     }
                 }
-
-        return deferredTickersMap.mapValues { it.value.await() }
+                .map { (market, job) -> market to job.await() }
     }
 
 }

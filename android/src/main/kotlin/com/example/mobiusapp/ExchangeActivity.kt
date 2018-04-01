@@ -22,7 +22,8 @@ import kotlinx.coroutines.experimental.android.UI
 class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
     private val exchangeRepository = ExchangeRepository(Network().bittrexApi)
-    private val allMarketTickersInteractor
+
+    private val interactor
             = AllMarketsTickersSimultaneousInteractor(exchangeRepository, CommonPool)
 
     private val adapter by lazy {
@@ -31,12 +32,18 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
     private val presenter = ExchangePresenter(
             uiContext = UI,
-            allMarketsTickersInteractor = allMarketTickersInteractor
+            interactor = interactor
     )
 
-    override fun showMarket(tickers: Map<Market, Ticker>) {
-        adapter.items = tickers.map { TickerItemDelegate.MarketTicker(it.key, it.value) }
+    override fun showMarkets(tickers: List<Pair<Market, Ticker>>) {
+        adapter.items = tickers.map {
+            TickerItemDelegate.MarketTicker(it.first, it.second)
+        }
         adapter.notifyDataSetChanged()
+    }
+
+    override fun showLoading(loading: Boolean) {
+        loadingProgress.visibility = if (loading) VISIBLE else GONE
     }
 
     override fun onStart() {
@@ -56,11 +63,5 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
         tickersRecyclerView.adapter = adapter
         tickersRecyclerView.layoutManager = LinearLayoutManager(this)
     }
-
-    override fun showLoading(loading: Boolean) {
-        loadingProgress.visibility = if (loading) VISIBLE else GONE
-    }
-
-
 
 }

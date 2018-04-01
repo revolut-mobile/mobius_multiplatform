@@ -9,7 +9,7 @@ import kotlin.coroutines.experimental.CoroutineContext
 @Suppress("MemberVisibilityCanBePrivate")
 class ExchangePresenter(
         private val uiContext: CoroutineContext,
-        private val allMarketsTickersInteractor: AllMarketsTickersInteractor
+        private val interactor: AllMarketsTickersInteractor
 ) : BasePresenter<ExchangeView>() {
 
     private var running: Deferred<Unit?>? = null
@@ -23,9 +23,13 @@ class ExchangePresenter(
         running?.cancel()
         running = async(uiContext) {
             view?.showLoading(true)
-            val markets = allMarketsTickersInteractor.getTickersForAllMarkets()
+            try {
+                val markets = interactor.getTickersForAllMarkets()
+                view?.showMarkets(markets)
+            } catch (e: Throwable) {
+                println(e.message)
+            }
             view?.showLoading(false)
-            view?.showMarket(markets)
         }
     }
 
