@@ -165,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				675C708A2068305A00BE8A38 /* di */,
-				6756AC7C2066E39200CFEF41 /* domain */,
 				6756AC712066E2DE00CFEF41 /* data */,
 				6756AC6A2066D4CA00CFEF41 /* ui */,
 				671219042039E61100949A2A /* AppDelegate.swift */,
@@ -188,6 +187,7 @@
 		6756AC6B2066D4D400CFEF41 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				67ADD5BC2071234D00796900 /* model */,
 				671219062039E61100949A2A /* ViewController.swift */,
 				675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */,
 			);
@@ -211,22 +211,6 @@
 			name = repository;
 			sourceTree = "<group>";
 		};
-		6756AC7C2066E39200CFEF41 /* domain */ = {
-			isa = PBXGroup;
-			children = (
-				6756AC7D2066E39D00CFEF41 /* tickers */,
-			);
-			name = domain;
-			sourceTree = "<group>";
-		};
-		6756AC7D2066E39D00CFEF41 /* tickers */ = {
-			isa = PBXGroup;
-			children = (
-				6756AC7E2066E3AC00CFEF41 /* Ticker.swift */,
-			);
-			path = tickers;
-			sourceTree = "<group>";
-		};
 		6756AC822066EC2500CFEF41 /* api */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +226,14 @@
 				675C708B2068306C00BE8A38 /* Assembly.swift */,
 			);
 			path = di;
+			sourceTree = "<group>";
+		};
+		67ADD5BC2071234D00796900 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				6756AC7E2066E3AC00CFEF41 /* Ticker.swift */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		C4C6E0591946093831FCB272 /* Pods */ = {

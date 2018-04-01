@@ -12,7 +12,7 @@ class AllMarketsTickersConsequentInteractor(
     private val lastTickers = mutableMapOf<Market, Ticker>()
 
     override suspend fun getTickersForAllMarkets(): Map<Market, Ticker> = exchangeRepository.getAllMarkets()
-            .subList(0, 20)
+            .subList(0, 60)
             .filterNot { lastTickers.containsKey(it) }
             .take(10)
             .map { market -> market to exchangeRepository.getTicker(market) }

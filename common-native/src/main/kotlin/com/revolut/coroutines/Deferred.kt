@@ -7,17 +7,19 @@ actual class Deferred<out T>(
         private val block: suspend () -> T
 ) {
 
+    private val dispatcher: ContinuationDispatcher? = context as? ContinuationDispatcher
+
     actual suspend fun await(): T {
-        return Any() as T
+        throw kotlin.IllegalStateException("Not implemented in common-native")
     }
 
     fun start() {
-        (context as? ContinuationDispatcher)?.canceled = false
+        dispatcher?.canceled = false
         block.startCoroutine(EmptyContinuation(context))
     }
 
     actual fun cancel() {
-        (context as? ContinuationDispatcher)?.canceled = true
+        dispatcher?.canceled = true
     }
 
 }
