@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-platform-android'
+apply plugin: 'kotlin-android-extensions'
 
 dependencies {
     expectedBy project(":common")
