@@ -24,8 +24,9 @@ class ServiceAssembly: Assembly {
     }
     
     var exchangeInteractor: RevAllMarketsTickersInteractor {
-        return define(init: RevAllMarketsTickersConsequentInteractor(
-            exchangeRepository: self.exchangeRepository
+        return define(init: RevAllMarketsTickersSimultaneousInteractor(
+            exchangeRepository: self.exchangeRepository,
+            workerContext: RevAsyncDispatcher()
         ))
     }
         

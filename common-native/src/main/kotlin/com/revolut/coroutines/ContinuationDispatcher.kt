@@ -5,7 +5,8 @@ import kotlin.coroutines.experimental.intrinsics.*
 
 import platform.darwin.*
 
-abstract class ContinuationDispatcher : AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
+abstract class ContinuationDispatcher :
+        AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
     var canceled = false
 
     abstract fun <T> dispatchResume(value: T, continuation: Continuation<T>): Boolean

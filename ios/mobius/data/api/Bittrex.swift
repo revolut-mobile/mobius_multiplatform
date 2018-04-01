@@ -23,7 +23,7 @@ class BittrexApi {
         
         let url = baseURL.appendingPathComponent("getmarkets")
         Alamofire.request(url)
-            .debugLog()
+            //.debugLog()
             .responseJSON { response in
                 if let result = MapperFactory.marketsMapper.map(response: response) {
                     callback.resume(value: result)
@@ -44,7 +44,7 @@ class BittrexApi {
             .addQueryParams(newParams: [URLQueryItem(name: "market", value: market.marketName)])
         
         Alamofire.request(url)
-            .debugLog()
+//            .debugLog()
             .responseJSON { response in
                 if let result = MapperFactory.tickersMapper.map(response: response) {
                     callback.resume(value: result)

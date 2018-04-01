@@ -10,7 +10,7 @@ actual class Deferred<out T>(
     private val dispatcher: ContinuationDispatcher? = context as? ContinuationDispatcher
 
     actual suspend fun await(): T {
-        throw kotlin.IllegalStateException("Not implemented in common-native")
+        throw IllegalStateException("Not implemented in common-native")
     }
 
     fun start() {

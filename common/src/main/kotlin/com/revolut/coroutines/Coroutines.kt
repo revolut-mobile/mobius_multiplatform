@@ -20,7 +20,7 @@ open class EmptyContinuation(override val context: CoroutineContext) : Continuat
     companion object : EmptyContinuation(context)
 
     override fun resume(value: Any?) {
-
+        print("Empty Continuation")
     }
 
     override fun resumeWithException(exception: Throwable) {
