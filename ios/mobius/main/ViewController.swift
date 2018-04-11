@@ -22,6 +22,10 @@ class ViewController: UITableViewController, RevExchangeView {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         presenter.attach(view: self)
     }
     
