@@ -35,6 +35,10 @@ android {
     packagingOptions {
         pickFirst 'META-INF/main.kotlin_module'
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {

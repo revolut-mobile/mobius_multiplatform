@@ -1,6 +1,0 @@
-framework module Rev {
-    umbrella header "Rev.h"
-
-    export *
-    module * { export * }
-}

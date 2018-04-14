@@ -23,16 +23,15 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
     private val exchangeRepository = ExchangeRepository(Network().bittrexApi)
 
-    private val interactor
-            = AllMarketsTickersSimultaneousInteractor(exchangeRepository, CommonPool)
+    private val interactor = AllMarketsTickersSimultaneousInteractor(exchangeRepository, CommonPool)
 
     private val adapter by lazy {
         ListDelegationAdapter(AdapterDelegatesManager<List<Any>>().addDelegate(TickerItemDelegate()))
     }
 
     private val presenter = ExchangePresenter(
-            uiContext = UI,
-            interactor = interactor
+        uiContext = UI,
+        interactor = interactor
     )
 
     override fun showMarkets(tickers: List<Pair<Market, Ticker>>) {

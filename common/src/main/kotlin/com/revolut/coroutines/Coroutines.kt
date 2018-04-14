@@ -10,18 +10,17 @@ import kotlin.coroutines.experimental.CoroutineContext
  */
 expect fun <T> async(context: CoroutineContext, block: suspend () -> T): Deferred<T>
 
+expect fun <T> launch(context: CoroutineContext, block: suspend () -> T)
+
 expect class Deferred<out T> {
     suspend fun await(): T
-    fun cancel()
 }
 
 open class EmptyContinuation(override val context: CoroutineContext) : Continuation<Any?> {
 
     companion object : EmptyContinuation(context)
 
-    override fun resume(value: Any?) {
-        print("Empty Continuation")
-    }
+    override fun resume(value: Any?) = Unit
 
     override fun resumeWithException(exception: Throwable) {
         throw exception

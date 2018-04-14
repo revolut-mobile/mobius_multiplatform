@@ -1,25 +1,18 @@
 package com.revolut.coroutines
 
 import kotlin.coroutines.experimental.*
+import kotlin.coroutines.experimental.intrinsics.*
 
 actual class Deferred<out T>(
         private val context: CoroutineContext,
         private val block: suspend () -> T
 ) {
 
-    private val dispatcher: ContinuationDispatcher? = context as? ContinuationDispatcher
-
     actual suspend fun await(): T {
-        throw IllegalStateException("Not implemented in common-native")
-    }
-
-    fun start() {
-        dispatcher?.canceled = false
-        block.startCoroutine(EmptyContinuation(context))
-    }
-
-    actual fun cancel() {
-        dispatcher?.canceled = true
+        return suspendCoroutineOrReturn { continuation ->
+            block.startCoroutine(continuation)
+            COROUTINE_SUSPENDED
+        }
     }
 
 }

@@ -14,3 +14,10 @@ actual fun <T> async(context: CoroutineContext, block: suspend () -> T): com.rev
         withContext(context, block = block)
     })
 }
+
+actual fun <T> launch(context: CoroutineContext, block: suspend () -> T) {
+    kotlinx.coroutines.experimental.launch(context) {
+        block()
+    }
+}
+

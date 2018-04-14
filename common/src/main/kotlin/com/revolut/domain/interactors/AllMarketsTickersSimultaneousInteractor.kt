@@ -8,19 +8,21 @@ import kotlin.coroutines.experimental.CoroutineContext
 
 
 class AllMarketsTickersSimultaneousInteractor(
-        private val repository: ExchangeRepository,
-        private val context: CoroutineContext
+    private val repository: ExchangeRepository,
+    private val context: CoroutineContext
 ) : AllMarketsTickersInteractor {
 
     override suspend fun getTickersForAllMarkets(): List<Pair<Market, Ticker>> {
         return repository.getAllMarkets()
-                .subList(0, 20)
-                .map { market ->
-                    market to async(context) {
-                        repository.getTicker(market)
-                    }
+            .subList(0, 20)
+            .map { market ->
+                market to async(context) {
+                    repository.getTicker(market)
                 }
-                .map { (market, job) -> market to job.await() }
+            }
+            .map { (market, job) ->
+                market to job.await()
+            }
     }
 
 }

@@ -7,7 +7,6 @@ import platform.darwin.*
 
 abstract class ContinuationDispatcher :
         AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
-    var canceled = false
 
     abstract fun <T> dispatchResume(value: T, continuation: Continuation<T>): Boolean
     abstract fun dispatchResumeWithException(exception: Throwable, continuation: Continuation<*>): Boolean
@@ -25,13 +24,13 @@ internal class DispatchedContinuation<T>(
     override val context: CoroutineContext = continuation.context
 
     override fun resume(value: T) {
-        if (dispatcher.canceled.not() && dispatcher.dispatchResume(value, continuation).not()) {
+        if (dispatcher.dispatchResume(value, continuation).not()) {
             continuation.resume(value)
         }
     }
 
     override fun resumeWithException(exception: Throwable) {
-        if (dispatcher.canceled.not() && dispatcher.dispatchResumeWithException(exception, continuation).not()) {
+        if (dispatcher.dispatchResumeWithException(exception, continuation).not()) {
             continuation.resumeWithException(exception)
         }
     }

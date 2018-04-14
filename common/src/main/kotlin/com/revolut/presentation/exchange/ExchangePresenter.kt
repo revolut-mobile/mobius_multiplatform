@@ -1,7 +1,6 @@
 package com.revolut.presentation.exchange
 
-import com.revolut.coroutines.Deferred
-import com.revolut.coroutines.async
+import com.revolut.coroutines.launch
 import com.revolut.domain.interactors.AllMarketsTickersInteractor
 import com.revolut.presentation.base.BasePresenter
 import kotlin.coroutines.experimental.CoroutineContext
@@ -12,16 +11,13 @@ class ExchangePresenter(
         private val interactor: AllMarketsTickersInteractor
 ) : BasePresenter<ExchangeView>() {
 
-    private var running: Deferred<Unit?>? = null
-
     override fun onViewAttached() {
         super.onViewAttached()
         refresh()
     }
 
     fun refresh() {
-        running?.cancel()
-        running = async(uiContext) {
+        launch(uiContext) {
             view?.showLoading(true)
             try {
                 val markets = interactor.getTickersForAllMarkets()
