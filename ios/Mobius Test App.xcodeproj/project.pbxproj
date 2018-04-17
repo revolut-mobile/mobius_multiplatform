@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		673A2283208297340087B5F4 /* Rev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6770DB53204F33FA008420E6 /* Rev.framework */; };
-		673A2284208297340087B5F4 /* Rev.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6770DB53204F33FA008420E6 /* Rev.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6756AC762066E30600CFEF41 /* ExchangeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC732066E30600CFEF41 /* ExchangeRepository.swift */; };
 		6756AC812066E3AC00CFEF41 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC7E2066E3AC00CFEF41 /* Ticker.swift */; };
 		6756AC862066EC3C00CFEF41 /* Bittrex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC832066EC3C00CFEF41 /* Bittrex.swift */; };
 		675C7087206825BC00BE8A38 /* MapperFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C7086206825BC00BE8A38 /* MapperFactory.swift */; };
 		675C708E2068306C00BE8A38 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C708B2068306C00BE8A38 /* Assembly.swift */; };
 		675C70972068375D00BE8A38 /* ViewControllerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */; };
+		67D30FB320864C8900511C1D /* Rev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D30FB120864C6400511C1D /* Rev.framework */; };
+		67D30FB420864C8900511C1D /* Rev.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D30FB120864C6400511C1D /* Rev.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67D770A8204EDA86001D7F59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671219062039E61100949A2A /* ViewController.swift */; };
 		67D770A9204EDA86001D7F59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671219042039E61100949A2A /* AppDelegate.swift */; };
 		67D770AE204EDA86001D7F59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6712190D2039E61100949A2A /* LaunchScreen.storyboard */; };
@@ -29,7 +29,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				673A2284208297340087B5F4 /* Rev.framework in Embed Frameworks */,
+				67D30FB420864C8900511C1D /* Rev.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,15 +50,13 @@
 		6712190B2039E61100949A2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6712190E2039E61100949A2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		671219102039E61100949A2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		673A22802082962A0087B5F4 /* iphone_sim */ = {isa = PBXFileReference; lastKnownFileType = folder; name = iphone_sim; path = "../common-native/build/konan/bin/iphone_sim"; sourceTree = "<group>"; };
 		6756AC732066E30600CFEF41 /* ExchangeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRepository.swift; sourceTree = "<group>"; };
 		6756AC7E2066E3AC00CFEF41 /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
 		6756AC832066EC3C00CFEF41 /* Bittrex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bittrex.swift; sourceTree = "<group>"; };
 		675C7086206825BC00BE8A38 /* MapperFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapperFactory.swift; sourceTree = "<group>"; };
 		675C708B2068306C00BE8A38 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAssembly.swift; sourceTree = "<group>"; };
-		6770DB53204F33FA008420E6 /* Rev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rev.framework; path = "../common-native/build/konan/bin/iphone_sim/Rev.framework"; sourceTree = "<group>"; };
-		67AE8335204EF3710073CF00 /* Rev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rev.framework; path = "../common-native/build/konan/bin/iphone_sim/Rev.framework"; sourceTree = "<group>"; };
+		67D30FB120864C6400511C1D /* Rev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rev.framework; path = "../platform-ios/build/konan/bin/iphone_sim/Rev.framework"; sourceTree = "<group>"; };
 		67D770B7204EDA86001D7F59 /* mobius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B8CDE4B9F7148435C43257 /* Pods_mobius_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobius_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9C5BD7AA54829247C9DFA0 /* Pods_mobius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				673A2283208297340087B5F4 /* Rev.framework in Frameworks */,
+				67D30FB320864C8900511C1D /* Rev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +77,8 @@
 		671218F82039E61100949A2A = {
 			isa = PBXGroup;
 			children = (
-				6770DB53204F33FA008420E6 /* Rev.framework */,
 				671219032039E61100949A2A /* mobius */,
 				671219022039E61100949A2A /* Products */,
-				67AE8335204EF3710073CF00 /* Rev.framework */,
 				C4C6E0591946093831FCB272 /* Pods */,
 				F8A62D7F4BE9793FEEA0B09F /* Frameworks */,
 			);
@@ -187,7 +183,7 @@
 		F8A62D7F4BE9793FEEA0B09F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				673A22802082962A0087B5F4 /* iphone_sim */,
+				67D30FB120864C6400511C1D /* Rev.framework */,
 				EC9C5BD7AA54829247C9DFA0 /* Pods_mobius.framework */,
 				78B8CDE4B9F7148435C43257 /* Pods_mobius_dev.framework */,
 				19E6FC6798A513C38DB2E3C8 /* Pods_mobius_sim.framework */,
@@ -477,7 +473,7 @@
 				DEVELOPMENT_TEAM = QUZEZSEARC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../common-native/build/konan/bin/iphone_sim",
+					"$(PROJECT_DIR)/../platform-ios/build/konan/bin/iphone_sim",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "mobius-dev copy2-Info.plist";
@@ -498,7 +494,7 @@
 				DEVELOPMENT_TEAM = QUZEZSEARC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../common-native/build/konan/bin/iphone_sim",
+					"$(PROJECT_DIR)/../platform-ios/build/konan/bin/iphone_sim",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "mobius-dev copy2-Info.plist";
