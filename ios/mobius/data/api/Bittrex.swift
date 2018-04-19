@@ -26,6 +26,7 @@ class BittrexApi {
             //.debugLog()
             .responseJSON { response in
                 if let result = MapperFactory.marketsMapper.map(response: response) {
+                    print("resume on thread is \(Thread.current)")
                     callback.resume(value: result)
                 } else {
                     callback.resumeWithException(exception: RevStdlibThrowable(message: "Can't parse response"))

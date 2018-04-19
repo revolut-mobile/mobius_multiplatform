@@ -22,6 +22,7 @@ class ExchangeRepository: RevExchangeRepository {
     }
     
     override func getTicker(market: RevMarket, callback: RevStdlibContinuation) {
+        print("getTicker on thread is \(Thread.current)")
         api.getTicker(market: market, callback: callback)
     }
     

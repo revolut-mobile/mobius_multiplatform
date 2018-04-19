@@ -35,6 +35,7 @@ class ViewController: UITableViewController, RevExchangeView {
     }
     
     func showMarkets(tickers: [RevStdlibPair]) {
+        print("showMarkets on thread is \(Thread.current)")
         items.removeAll()
         items += tickers.map { (arg) -> Ticker in
             return Ticker(market: arg.first as! RevMarket, ticker: arg.second as! RevTicker)

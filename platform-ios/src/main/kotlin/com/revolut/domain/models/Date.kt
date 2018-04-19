@@ -10,7 +10,7 @@ actual class Date actual constructor(
 
     private val calendarComponents by lazy {
         with(NSCalendar(ident = NSGregorianCalendar)) {
-            calendar.components(unitFlags = NSCalendarUnitDay, fromDate = dateTime)
+            components(unitFlags = NSCalendarUnitDay, fromDate = dateTime)
         }
     }
 

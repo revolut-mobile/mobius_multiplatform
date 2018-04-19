@@ -1,7 +1,7 @@
 allprojects {
 
     buildscript {
-        ext.kotlin_version = '1.2.40-eap-16'
+        ext.kotlin_version = '1.2.40-eap-62'
         ext.kotlin_native_version = '0.6.2'
         ext.anko_version = '0.10.1'
 
@@ -15,7 +15,7 @@ allprojects {
         dependencies {
             classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
             classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:$kotlin_native_version"
-            classpath "com.android.tools.build:gradle:3.1.0"
+            classpath "com.android.tools.build:gradle:3.1.1"
         }
     }
 

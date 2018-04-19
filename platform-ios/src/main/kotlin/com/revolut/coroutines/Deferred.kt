@@ -10,7 +10,7 @@ actual class Deferred<out T>(
 
     actual suspend fun await(): T {
         return suspendCoroutineOrReturn { continuation ->
-            block.startCoroutine(continuation)
+            block.startCoroutine(WrappedContinuation(context, continuation))
             COROUTINE_SUSPENDED
         }
     }

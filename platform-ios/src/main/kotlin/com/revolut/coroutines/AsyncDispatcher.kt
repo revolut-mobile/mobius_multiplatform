@@ -10,7 +10,8 @@ class AsyncDispatcher : ContinuationDispatcher() {
     private val queue = dispatch_queue_create("com.revolut.queue", null)
 
     override fun <T> dispatchResume(value: T, continuation: Continuation<T>): Boolean {
-        dispatch_async(queue) {
+        println("AsyncDispatcher resume")
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT.toLong(), 0)) {
             continuation.resume(value)
         }
         return true
