@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27D871144C11DB3E12A14E7B /* Pods_mobius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9C5BD7AA54829247C9DFA0 /* Pods_mobius.framework */; };
 		6756AC762066E30600CFEF41 /* ExchangeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC732066E30600CFEF41 /* ExchangeRepository.swift */; };
 		6756AC812066E3AC00CFEF41 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC7E2066E3AC00CFEF41 /* Ticker.swift */; };
 		6756AC862066EC3C00CFEF41 /* Bittrex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC832066EC3C00CFEF41 /* Bittrex.swift */; };
@@ -68,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67D30FB320864C8900511C1D /* Rev.framework in Frameworks */,
+				27D871144C11DB3E12A14E7B /* Pods_mobius.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +472,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QUZEZSEARC;
+				DEVELOPMENT_TEAM = 8DP37ZRY87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../platform-ios/build/konan/bin/iphone_sim",
@@ -491,7 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QUZEZSEARC;
+				DEVELOPMENT_TEAM = 8DP37ZRY87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../platform-ios/build/konan/bin/iphone_sim",
