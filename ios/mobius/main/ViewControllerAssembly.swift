@@ -18,6 +18,7 @@ class ViewControllerAssembly: Assembly {
         defineInjection(into: viewController) {
             $0.presenter = RevExchangePresenter(
                     uiContext: RevMainQueueDispatcher(),
+                    workerContext: RevAsyncDispatcher(),
                     interactor: self.serviceAssembly.exchangeInteractor
             )
             return $0

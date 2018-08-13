@@ -30,8 +30,9 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
     }
 
     private val presenter = ExchangePresenter(
-        uiContext = UI,
-        interactor = interactor
+            uiContext = UI,
+            workerContext = CommonPool,
+            interactor = interactor
     )
 
     override fun showMarkets(tickers: List<Pair<Market, Ticker>>) {

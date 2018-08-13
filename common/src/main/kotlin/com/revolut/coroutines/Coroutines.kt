@@ -3,20 +3,16 @@ package com.revolut.coroutines
 import kotlin.coroutines.experimental.Continuation
 import kotlin.coroutines.experimental.CoroutineContext
 
-/**
- * Created by yatsinar on 04/03/2018.
- * Revolut
- * All rights reserved
- */
-expect fun <T> async(context: CoroutineContext, block: suspend () -> T): Deferred<T>
 
-expect fun <T> launch(context: CoroutineContext, block: suspend () -> T)
+    expect fun <T> async(context: CoroutineContext, block: suspend () -> T): Deferred<T>
 
-expect suspend fun <T> withContext(context: CoroutineContext, block: suspend () -> T): T
+    expect fun <T> launch(context: CoroutineContext, block: suspend () -> T)
 
-expect class Deferred<out T> {
-    suspend fun await(): T
-}
+    expect suspend fun <T> withContext(context: CoroutineContext, block: suspend () -> T): T
+
+    expect class Deferred<out T> {
+        suspend fun await(): T
+    }
 
 open class EmptyContinuation(override val context: CoroutineContext) : Continuation<Any?> {
 
