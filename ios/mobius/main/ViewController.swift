@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Rev
+import common
 
-class ViewController: UITableViewController, RevExchangeView {
+class ViewController: UITableViewController, ExchangeView {
     
-    var presenter: RevExchangePresenter!
+    var presenter: ExchangePresenter!
     var items = [Ticker]()
     
     override func awakeFromNib() {
@@ -34,11 +34,11 @@ class ViewController: UITableViewController, RevExchangeView {
         presenter.detach()
     }
     
-    func showMarkets(tickers: [RevStdlibPair]) {
+    func showMarkets(tickers: [KotlinPair]) {
         print("showMarkets on thread is \(Thread.current)")
         items.removeAll()
         items += tickers.map { (arg) -> Ticker in
-            return Ticker(market: arg.first as! RevMarket, ticker: arg.second as! RevTicker)
+            return Ticker(market: arg.first as! common.Market, ticker: arg.second as! common.Ticker)
         }
         tableView.reloadData()
     }

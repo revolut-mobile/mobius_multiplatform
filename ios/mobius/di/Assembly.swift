@@ -8,7 +8,7 @@
 
 import Foundation
 import EasyDi
-import Rev
+import common
 
 class ServiceAssembly: Assembly {
     
@@ -19,14 +19,14 @@ class ServiceAssembly: Assembly {
         }
     }
 
-    var exchangeRepository: RevExchangeRepository {
+    var exchangeRepository: common.ExchangeRepository {
         return define(init: ExchangeRepository(api: self.api))
     }
     
-    var exchangeInteractor: RevAllMarketsTickersInteractor {
-        return define(init: RevAllMarketsTickersSimultaneousInteractor(
+    var exchangeInteractor: AllMarketsTickersInteractor {
+        return define(init: AllMarketsTickersSimultaneousInteractor(
             repository: self.exchangeRepository,
-            context: RevAsyncDispatcher()
+            context: common.AsyncDispatcher()
         ))
     }
         

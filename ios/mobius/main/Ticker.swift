@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import Rev
+import common
 
 class Ticker {
     let title: String
     let subTitle: String
     
-    init(market: RevMarket, ticker: RevTicker) {
+    init(market: Market, ticker: common.Ticker) {
         self.title = "\(market.marketName)"
         self.subTitle = "Bid: \(ticker.bid.string(fractionDigits: 8)), Ask: \(ticker.ask.string(fractionDigits: 8))"
     }

@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-import Rev
+import common
 
 protocol Mapper {
     associatedtype T
@@ -19,13 +19,13 @@ protocol Mapper {
 
 class MarketsMapper: Mapper {
     
-    typealias T = [RevMarket]
+    typealias T = [Market]
     
-    func map(response: DataResponse<Any>) -> [RevMarket]? {
+    func map(response: DataResponse<Any>) -> [Market]? {
         if let result = response.result.value {
             let jsonResult = JSON(result)
-            return jsonResult["result"].arrayValue.map({json -> RevMarket in
-                return RevMarket(
+            return jsonResult["result"].arrayValue.map({json -> Market in
+                return Market(
                     marketCurrency: json["MarketCurrency"].stringValue,
                     marketCurrencyLong: json["MarketCurrencyLong"].stringValue,
                     baseCurrency: json["BaseCurrency"].stringValue,
@@ -45,13 +45,13 @@ class MarketsMapper: Mapper {
 
 class TickersMapper: Mapper {
     
-    typealias T = RevTicker
+    typealias T = common.Ticker
     
-    func map(response: DataResponse<Any>) -> RevTicker? {
+    func map(response: DataResponse<Any>) -> common.Ticker? {
         if let result = response.result.value {
             let jsonResult = JSON(result)
             let dic = jsonResult["result"].dictionaryValue
-            return RevTicker(
+            return common.Ticker(
                 bid: dic["Bid"]!.doubleValue,
                 ask: dic["Ask"]!.doubleValue,
                 last: dic["Last"]!.doubleValue

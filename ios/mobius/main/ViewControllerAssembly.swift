@@ -8,7 +8,7 @@
 
 import Foundation
 import EasyDi
-import Rev
+import common
 
 class ViewControllerAssembly: Assembly {
     
@@ -16,9 +16,9 @@ class ViewControllerAssembly: Assembly {
     
     func inject(into viewController: ViewController) {
         defineInjection(into: viewController) {
-            $0.presenter = RevExchangePresenter(
-                    uiContext: RevMainQueueDispatcher(),
-                    workerContext: RevAsyncDispatcher(),
+            $0.presenter = ExchangePresenter(
+                    uiContext: common.MainQueueDispatcher(),
+                    workerContext: common.AsyncDispatcher(),
                     interactor: self.serviceAssembly.exchangeInteractor
             )
             return $0

@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import Rev
+import common
 
-class ExchangeRepository: RevExchangeRepository {
+class ExchangeRepository: common.ExchangeRepository {
     
     private let api: BittrexApi
     
@@ -17,11 +17,11 @@ class ExchangeRepository: RevExchangeRepository {
         self.api = api
     }
     
-    override func getAllMarkets(callback: RevStdlibContinuation) {
+    override func getAllMarkets(callback: KotlinContinuation) {
         api.getAllMarkets(callback: callback)
     }
     
-    override func getTicker(market: RevMarket, callback: RevStdlibContinuation) {
+    override func getTicker(market: Market, callback: KotlinContinuation) {
         print("getTicker on thread is \(Thread.current)")
         api.getTicker(market: market, callback: callback)
     }

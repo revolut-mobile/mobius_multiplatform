@@ -9,15 +9,15 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-import Rev
+import common
 
 class BittrexApi {
     
     var baseURL: URL?
     
-    func getAllMarkets(callback: RevStdlibContinuation) {
+    func getAllMarkets(callback: KotlinContinuation) {
         guard let baseURL = self.baseURL else {
-            callback.resumeWithException(exception: RevStdlibThrowable(message: "Can't get url"))
+            callback.resumeWith(result: NSError())
             return
         }
         
@@ -27,16 +27,16 @@ class BittrexApi {
             .responseJSON { response in
                 if let result = MapperFactory.marketsMapper.map(response: response) {
                     print("resume on thread is \(Thread.current)")
-                    callback.resume(value: result)
+                    callback.resumeWith(result: result)
                 } else {
-                    callback.resumeWithException(exception: RevStdlibThrowable(message: "Can't parse response"))
+                    callback.resumeWith(result: NSError())
                 }
         }
     }
     
-    func getTicker(market: RevMarket, callback: RevStdlibContinuation) {
+    func getTicker(market: Market, callback: KotlinContinuation) {
         guard let baseURL = self.baseURL else {
-            callback.resumeWithException(exception: RevStdlibThrowable(message: "Can't get url"))
+            callback.resumeWith(result: NSError(domain: "Can't get url", code: 0))
             return
         }
         
@@ -48,9 +48,9 @@ class BittrexApi {
 //            .debugLog()
             .responseJSON { response in
                 if let result = MapperFactory.tickersMapper.map(response: response) {
-                    callback.resume(value: result)
+                    callback.resumeWith(result: result)
                 } else {
-                    callback.resumeWithException(exception: RevStdlibThrowable(message: "Can't parse response"))
+                    callback.resumeWith(result: NSError(domain: "Can't parse response", code: 0))
                 }
         }
     }
