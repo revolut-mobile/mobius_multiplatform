@@ -15,13 +15,10 @@ expect class Deferred<out T> {
 
 open class EmptyContinuation(override val context: CoroutineContext) : Continuation<Any?> {
 
+    override fun resumeWith(result: Result<Any?>) = Unit
+
     companion object : EmptyContinuation(context)
 
-    override fun resume(value: Any?) = Unit
-
-    override fun resumeWithException(exception: Throwable) {
-        throw exception
-    }
 }
 
 open class WrappedContinuation<in T>(
@@ -31,7 +28,6 @@ open class WrappedContinuation<in T>(
 
     companion object : WrappedContinuation<Any>(context, continuation)
 
-    override fun resume(value: T) = continuation.resume(value)
+    override fun resumeWith(result: Result<T>) = continuation.resumeWith(result)
 
-    override fun resumeWithException(exception: Throwable) = continuation.resumeWithException(exception)
 }
