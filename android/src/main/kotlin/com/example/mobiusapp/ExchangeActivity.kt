@@ -15,23 +15,22 @@ import com.revolut.domain.repositories.ExchangeRepository
 import com.revolut.presentation.exchange.ExchangePresenter
 import com.revolut.presentation.exchange.ExchangeView
 import kotlinx.android.synthetic.main.activity_echange.*
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.Dispatchers
 
 
 class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
     private val exchangeRepository = ExchangeRepository(Network().bittrexApi)
 
-    private val interactor = AllMarketsTickersSimultaneousInteractor(exchangeRepository, CommonPool)
+    private val interactor = AllMarketsTickersSimultaneousInteractor(exchangeRepository, Dispatchers.Default)
 
     private val adapter by lazy {
         ListDelegationAdapter(AdapterDelegatesManager<List<Any>>().addDelegate(TickerItemDelegate()))
     }
 
     private val presenter = ExchangePresenter(
-            uiContext = UI,
-            workerContext = CommonPool,
+            uiContext = Dispatchers.Unconfined,
+            workerContext = Dispatchers.Default,
             interactor = interactor
     )
 
