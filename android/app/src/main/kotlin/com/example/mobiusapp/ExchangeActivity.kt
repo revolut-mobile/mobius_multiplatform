@@ -15,6 +15,7 @@ import com.revolut.presentation.exchange.ExchangePresenter
 import com.revolut.presentation.exchange.ExchangeView
 import kotlinx.android.synthetic.main.activity_echange.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.android.Main
 
 class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
@@ -28,7 +29,7 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
     private val presenter = ExchangePresenter(
             interactor = interactor,
-            UI = Dispatchers.Default
+            UI = Dispatchers.Main
     )
 
     override fun showMarkets(tickers: List<Pair<Market, Ticker>>) {
