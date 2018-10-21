@@ -1,9 +1,9 @@
 package com.revolut.domain.interactors
 
-import com.revolut.coroutines.async
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
 import com.revolut.domain.repositories.ExchangeRepository
+import kotlinx.coroutines.async
 import kotlin.coroutines.CoroutineContext
 
 

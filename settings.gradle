@@ -1,2 +1,9 @@
 rootProject.name = 'mobius'
-include 'common', 'android'
+
+enableFeaturePreview('GRADLE_METADATA')
+
+include 'common'
+
+if (INCLUDE_ANDROID == "true") {
+    include 'android', 'android:app'
+}

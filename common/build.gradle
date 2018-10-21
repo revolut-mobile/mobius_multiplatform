@@ -1,60 +1,48 @@
 apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlinx-serialization'
 
 kotlin {
     targets {
-        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
-                              ? presets.iosArm64 : presets.iosX64
+        fromPreset(presets.jvm, 'jvm')
 
-        fromPreset(iOSTarget, 'iOS') {
+        fromPreset(presets.iosX64, 'ios') {
             compilations.main.outputKinds('FRAMEWORK')
         }
-
-        fromPreset(presets.jvm, 'android')
     }
 
     sourceSets {
-        commonMain.dependencies {
-            api 'org.jetbrains.kotlin:kotlin-stdlib-common'
-            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:0.30.2"
+        commonMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutines_version"
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
+
+                implementation "io.ktor:ktor-client-core:$ktor_version"
+                implementation "io.ktor:ktor-client-json:$ktor_version"
+            }
         }
+        iosMain {
+            dependencies {
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutines_version"
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
 
-        androidMain.dependencies {
-            api 'org.jetbrains.kotlin:kotlin-stdlib'
-            implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-            api "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.30.2-eap13"
-            implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.2'
-            implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-            implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
-            implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-            implementation 'com.google.code.gson:gson:2.8.5'
-            implementation'joda-time:joda-time:2.9.9'
+                implementation "io.ktor:ktor-client-ios:$ktor_version"
+                implementation "io.ktor:ktor-client-core-ios:$ktor_version"
+                implementation "io.ktor:ktor-client-json-ios:$ktor_version"
+            }
         }
-    }
+        jvmMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
-}
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
 
-
-// workaround for https://youtrack.jetbrains.com/issue/KT-27170
-configurations {
-    compileClasspath
-}
-
-task packForXCode(type: Sync) {
-    final File frameworkDir = new File(buildDir, "xcode-frameworks")
-    final String mode = System.getenv('CONFIGURATION')?.toUpperCase() ?: 'DEBUG'
-
-    inputs.property "mode", mode
-    dependsOn kotlin.targets.iOS.compilations.main.linkTaskName("FRAMEWORK", mode)
-
-    from { kotlin.targets.iOS.compilations.main.getBinary("FRAMEWORK", mode).parentFile }
-    into frameworkDir
-
-    doLast {
-        new File(frameworkDir, 'gradlew').with {
-            text = "#!/bin/bash\nexport 'JAVA_HOME=${System.getProperty("java.home")}'\ncd '${rootProject.rootDir}'\n./gradlew \$@\n"
-            setExecutable(true)
+                implementation "io.ktor:ktor-client-core-jvm:$ktor_version"
+                implementation "io.ktor:ktor-client-json-jvm:$ktor_version"
+            }
         }
     }
+
 }
 
-tasks.build.dependsOn packForXCode
