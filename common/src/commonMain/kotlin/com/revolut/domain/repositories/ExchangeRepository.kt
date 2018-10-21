@@ -3,7 +3,7 @@ package com.revolut.domain.repositories
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
 import com.revolut.domain.network.models.MarketResponse
-import com.revolut.domain.network.models.Result
+import com.revolut.domain.network.models.TickerResult
 import com.revolut.domain.network.models.TickerResponse
 import com.revolut.domain.network.models.toDomain
 import io.ktor.client.*
@@ -33,7 +33,7 @@ object Api {
             serializer = KotlinxSerializer().apply {
                 setMapper(MarketResponse::class, MarketResponse.serializer() as KSerializer<MarketResponse>)
                 setMapper(TickerResponse::class, TickerResponse.serializer() as KSerializer<TickerResponse>)
-                setMapper(Result::class, Result.serializer(TickerResponse.serializer()) as KSerializer<Result<*>>)
+                setMapper(TickerResult::class, TickerResult.serializer())
             }
         }
     }
@@ -45,7 +45,7 @@ object Api {
         }
     }
 
-    suspend fun getTicker( market: String): Result<TickerResponse>  = client.get {
+    suspend fun getTicker( market: String): TickerResult  = client.get {
         url {
             takeFrom("https://bittrex.com/api/v1.1/public/")
             encodedPath = "getticker"

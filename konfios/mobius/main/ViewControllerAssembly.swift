@@ -17,9 +17,9 @@ class ViewControllerAssembly: Assembly {
     func inject(into viewController: ViewController) {
         defineInjection(into: viewController) {
             $0.presenter = ExchangePresenter(
-                    uiContext: common.MainQueueDispatcher(),
-                    workerContext: common.AsyncDispatcher(),
-                    interactor: self.serviceAssembly.exchangeInteractor
+                interactor: self.serviceAssembly.exchangeInteractor,
+                UI: UI()
+                    
             )
             return $0
         }

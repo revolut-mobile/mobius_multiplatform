@@ -20,7 +20,7 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
     private val exchangeRepository = ExchangeRepository()
 
-    private val interactor = AllMarketsTickersSimultaneousInteractor(exchangeRepository, Dispatchers.Default)
+    private val interactor = AllMarketsTickersSimultaneousInteractor(exchangeRepository)
 
     private val adapter by lazy {
         ListDelegationAdapter(AdapterDelegatesManager<List<Any>>().addDelegate(TickerItemDelegate()))
@@ -28,7 +28,7 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
     private val presenter = ExchangePresenter(
             interactor = interactor,
-            UI = Dispatchers.Main
+            UI = Dispatchers.Default
     )
 
     override fun showMarkets(tickers: List<Pair<Market, Ticker>>) {

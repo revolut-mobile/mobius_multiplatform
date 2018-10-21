@@ -3,6 +3,8 @@ package com.revolut.presentation.exchange
 import com.revolut.domain.interactors.AllMarketsTickersInteractor
 import com.revolut.presentation.base.BasePresenter
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -17,7 +19,7 @@ class ExchangePresenter(
     }
 
     fun refresh() {
-        launch(UI) {
+        GlobalScope.launch(UI, CoroutineStart.DEFAULT, null, {
             view?.showLoading(true)
             try {
                 val markets = interactor.getTickersForAllMarkets()
@@ -26,7 +28,7 @@ class ExchangePresenter(
                 println(e.message)
             }
             view?.showLoading(false)
-        }
+        })
     }
 
 }

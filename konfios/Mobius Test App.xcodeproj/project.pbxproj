@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F3A47D32170B4BB00521A24 /* common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A47D22170B4BA00521A24 /* common.framework */; };
-		4F3A47D42170B4BB00521A24 /* common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A47D22170B4BA00521A24 /* common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0712838164B5E7CC9BBD1E32 /* Pods_mobius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632BA50F3D3FEC383C058F3A /* Pods_mobius.framework */; };
+		4F1E3C72217C8DDA00D03A32 /* common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F1E3C71217C8DDA00D03A32 /* common.framework */; };
+		4F1E3C73217C8DDA00D03A32 /* common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F1E3C71217C8DDA00D03A32 /* common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F3A47D8217530CC00521A24 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A47D7217530CC00521A24 /* UI.swift */; };
-		6756AC762066E30600CFEF41 /* ExchangeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC732066E30600CFEF41 /* ExchangeRepository.swift */; };
 		6756AC812066E3AC00CFEF41 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC7E2066E3AC00CFEF41 /* Ticker.swift */; };
-		6756AC862066EC3C00CFEF41 /* Bittrex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756AC832066EC3C00CFEF41 /* Bittrex.swift */; };
-		675C7087206825BC00BE8A38 /* MapperFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C7086206825BC00BE8A38 /* MapperFactory.swift */; };
 		675C708E2068306C00BE8A38 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C708B2068306C00BE8A38 /* Assembly.swift */; };
 		675C70972068375D00BE8A38 /* ViewControllerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */; };
 		67D770A8204EDA86001D7F59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671219062039E61100949A2A /* ViewController.swift */; };
@@ -24,13 +22,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4F3A47D52170B4BB00521A24 /* Embed Frameworks */ = {
+		4F1E3C74217C8DDA00D03A32 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4F3A47D42170B4BB00521A24 /* common.framework in Embed Frameworks */,
+				4F1E3C73217C8DDA00D03A32 /* common.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -39,19 +37,17 @@
 
 /* Begin PBXFileReference section */
 		1743EF52B9CD6E0307421C85 /* Pods-mobius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mobius/Pods-mobius.debug.xcconfig"; sourceTree = "<group>"; };
-		4F3A47D22170B4BA00521A24 /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = "../common/build/xcode-frameworks/common.framework"; sourceTree = "<group>"; };
+		4F1E3C71217C8DDA00D03A32 /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/konan/bin/xcode/common.framework; sourceTree = "<group>"; };
 		4F3A47D7217530CC00521A24 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		51386EAA7585909AEFEBF3A5 /* Pods-mobius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobius.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobius/Pods-mobius.release.xcconfig"; sourceTree = "<group>"; };
+		632BA50F3D3FEC383C058F3A /* Pods_mobius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		671219042039E61100949A2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		671219062039E61100949A2A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		671219092039E61100949A2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6712190B2039E61100949A2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6712190E2039E61100949A2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		671219102039E61100949A2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6756AC732066E30600CFEF41 /* ExchangeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRepository.swift; sourceTree = "<group>"; };
 		6756AC7E2066E3AC00CFEF41 /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
-		6756AC832066EC3C00CFEF41 /* Bittrex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bittrex.swift; sourceTree = "<group>"; };
-		675C7086206825BC00BE8A38 /* MapperFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapperFactory.swift; sourceTree = "<group>"; };
 		675C708B2068306C00BE8A38 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAssembly.swift; sourceTree = "<group>"; };
 		67D770B7204EDA86001D7F59 /* mobius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobius.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F3A47D32170B4BB00521A24 /* common.framework in Frameworks */,
+				0712838164B5E7CC9BBD1E32 /* Pods_mobius.framework in Frameworks */,
+				4F1E3C72217C8DDA00D03A32 /* common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +69,7 @@
 		671218F82039E61100949A2A = {
 			isa = PBXGroup;
 			children = (
-				4F3A47D22170B4BA00521A24 /* common.framework */,
+				4F1E3C71217C8DDA00D03A32 /* common.framework */,
 				671219032039E61100949A2A /* mobius */,
 				671219022039E61100949A2A /* Products */,
 				C4C6E0591946093831FCB272 /* Pods */,
@@ -92,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				675C708A2068305A00BE8A38 /* di */,
-				6756AC712066E2DE00CFEF41 /* data */,
 				6756AC6A2066D4CA00CFEF41 /* ui */,
 				671219042039E61100949A2A /* AppDelegate.swift */,
 				671219082039E61100949A2A /* Main.storyboard */,
@@ -120,32 +116,6 @@
 				675C70942068375D00BE8A38 /* ViewControllerAssembly.swift */,
 			);
 			path = main;
-			sourceTree = "<group>";
-		};
-		6756AC712066E2DE00CFEF41 /* data */ = {
-			isa = PBXGroup;
-			children = (
-				6756AC822066EC2500CFEF41 /* api */,
-				6756AC722066E2E700CFEF41 /* repository */,
-			);
-			path = data;
-			sourceTree = "<group>";
-		};
-		6756AC722066E2E700CFEF41 /* repository */ = {
-			isa = PBXGroup;
-			children = (
-				6756AC732066E30600CFEF41 /* ExchangeRepository.swift */,
-			);
-			name = repository;
-			sourceTree = "<group>";
-		};
-		6756AC822066EC2500CFEF41 /* api */ = {
-			isa = PBXGroup;
-			children = (
-				6756AC832066EC3C00CFEF41 /* Bittrex.swift */,
-				675C7086206825BC00BE8A38 /* MapperFactory.swift */,
-			);
-			path = api;
 			sourceTree = "<group>";
 		};
 		675C708A2068305A00BE8A38 /* di */ = {
@@ -176,6 +146,7 @@
 		F8A62D7F4BE9793FEEA0B09F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				632BA50F3D3FEC383C058F3A /* Pods_mobius.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -187,14 +158,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67D770B4204EDA86001D7F59 /* Build configuration list for PBXNativeTarget "mobius" */;
 			buildPhases = (
-				4F3A47D62170B55100521A24 /* ShellScript */,
 				E47F8265ECF7C78ED709A881 /* [CP] Check Pods Manifest.lock */,
+				4F3A47D62170B55100521A24 /* ShellScript */,
 				67D770A7204EDA86001D7F59 /* Sources */,
 				67D770AA204EDA86001D7F59 /* Frameworks */,
 				67D770AD204EDA86001D7F59 /* Resources */,
 				EB74E7FE1AEA6756D93B7B31 /* [CP] Embed Pods Frameworks */,
 				2B503E60DB165C89242DC1D2 /* [CP] Copy Pods Resources */,
-				4F3A47D52170B4BB00521A24 /* Embed Frameworks */,
+				4F1E3C74217C8DDA00D03A32 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -327,14 +298,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6756AC762066E30600CFEF41 /* ExchangeRepository.swift in Sources */,
 				675C708E2068306C00BE8A38 /* Assembly.swift in Sources */,
 				4F3A47D8217530CC00521A24 /* UI.swift in Sources */,
 				67D770A8204EDA86001D7F59 /* ViewController.swift in Sources */,
-				6756AC862066EC3C00CFEF41 /* Bittrex.swift in Sources */,
 				675C70972068375D00BE8A38 /* ViewControllerAssembly.swift in Sources */,
 				6756AC812066E3AC00CFEF41 /* Ticker.swift in Sources */,
-				675C7087206825BC00BE8A38 /* MapperFactory.swift in Sources */,
 				67D770A9204EDA86001D7F59 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,6 +447,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../common/build/xcode-frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/konan/bin/xcode",
 				);
 				INFOPLIST_FILE = "mobius-dev copy2-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -500,6 +469,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../common/build/xcode-frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/konan/bin/xcode",
 				);
 				INFOPLIST_FILE = "mobius-dev copy2-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

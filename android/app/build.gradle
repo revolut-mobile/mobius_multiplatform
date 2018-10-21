@@ -28,10 +28,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-
     buildTypes {
         release {}
         debug {}
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -41,10 +44,7 @@ android {
         pickFirst 'META-INF/main.kotlin_module'
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
+
     tasks.lint.enabled = false
 }
 
@@ -59,11 +59,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.hannesdorfmann:adapterdelegates3:3.0.1'
     implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
-    api 'org.jetbrains.kotlin:kotlin-stdlib'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
-
-    implementation "io.ktor:ktor-client-core-jvm:$ktor_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "io.ktor:ktor-client-okhttp:$ktor_version"
     implementation "io.ktor:ktor-client-json-jvm:$ktor_version"
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'

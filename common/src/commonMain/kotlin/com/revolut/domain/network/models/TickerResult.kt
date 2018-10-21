@@ -14,8 +14,8 @@ import kotlinx.serialization.*
 }
  */
 @Serializable
-data class Result<T>(
-        @SerialName("result") val result: T,
+data class TickerResult(
+        @SerialName("result") val result: TickerResponse,
         @SerialName("success") val success: Boolean,
         @SerialName("message") val message: String)
 

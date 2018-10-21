@@ -1,5 +1,4 @@
 allprojects {
-
     buildscript {
         repositories {
             maven { url "http://kotlin.bintray.com/kotlin-eap" }
@@ -10,13 +9,11 @@ allprojects {
             google()
             jcenter()
         }
-
         dependencies {
             classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
             classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
         }
     }
-
     repositories {
         maven { url "http://kotlin.bintray.com/kotlin-eap" }
         maven { url "http://kotlin.bintray.com/kotlin-dev" }
