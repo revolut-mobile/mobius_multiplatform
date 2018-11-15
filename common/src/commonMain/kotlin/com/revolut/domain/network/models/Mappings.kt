@@ -16,12 +16,15 @@ fun MarketResponse.toDomain(): Market = Market(
         minTradeSize,
         marketName,
         isActive,
+        isRestricted,
+        notice,
+        isSponsored,
         created,
         logoUrl
 )
 
 fun Market.toNetwork(): MarketResponse = MarketResponse(
-        marketCurrency, marketCurrencyLong, baseCurrency, baseCurrencyLong, minTradeSize, marketName, isActive, created, logoUrl
+        marketCurrency, marketCurrencyLong, baseCurrency, baseCurrencyLong, minTradeSize, marketName, isActive, isRestricted, created, notice, isSponsored, logoUrl
 )
 
 fun TickerResponse.toDomain(): Ticker = Ticker(

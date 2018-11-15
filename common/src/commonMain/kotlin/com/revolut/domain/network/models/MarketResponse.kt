@@ -7,7 +7,8 @@ import kotlinx.serialization.Serializable
  * Created by yatsinar on 17/03/2018.
  * Revolut
  * All rights reserved
- * {
+ *
+{
 "MarketCurrency": "LTC",
 "BaseCurrency": "BTC",
 "MarketCurrencyLong": "Litecoin",
@@ -15,6 +16,7 @@ import kotlinx.serialization.Serializable
 "MinTradeSize": 0.01231527,
 "MarketName": "BTC-LTC",
 "IsActive": true,
+"IsRestricted": false,
 "Created": "2014-02-13T00:00:00",
 "Notice": null,
 "IsSponsored": null,
@@ -30,6 +32,9 @@ data class MarketResponse(
         @SerialName("MinTradeSize") val minTradeSize: Double,
         @SerialName("MarketName") val marketName: String,
         @SerialName("IsActive") val isActive: Boolean,
+        @SerialName("IsRestricted") val isRestricted: Boolean,
         @SerialName("Created") val created: String,
+        @SerialName("Notice") val notice: String?,
+        @SerialName("IsSponsored") val isSponsored: Boolean?,
         @SerialName("LogoUrl") val logoUrl: String?
 )

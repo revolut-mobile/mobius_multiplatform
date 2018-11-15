@@ -2,16 +2,14 @@ package com.revolut.domain.repositories
 
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
-import com.revolut.domain.network.models.MarketResponse
-import com.revolut.domain.network.models.TickerResult
-import com.revolut.domain.network.models.TickerResponse
-import com.revolut.domain.network.models.toDomain
+import com.revolut.domain.network.models.*
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.JSON
 
 /**
  * Created by yatsinar on 17/03/2018.
@@ -20,7 +18,7 @@ import kotlinx.serialization.KSerializer
  */
 class ExchangeRepository {
 
-    suspend fun getAllMarkets(): List<Market> = Api.getMarkets().map { it.toDomain() }
+    suspend fun getAllMarkets(): List<Market> = Api.getMarkets().let(MarketResult::result).map(MarketResponse::toDomain)
 
     suspend fun getTicker(market: Market): Ticker = Api.getTicker(market.marketName).result.toDomain()
 
@@ -29,26 +27,31 @@ class ExchangeRepository {
 object Api {
 
     private val client = HttpClient {
+        install(CallLoggingFeature)
+
         install(JsonFeature) {
             serializer = KotlinxSerializer().apply {
-                setMapper(MarketResponse::class, MarketResponse.serializer() as KSerializer<MarketResponse>)
-                setMapper(TickerResponse::class, TickerResponse.serializer() as KSerializer<TickerResponse>)
+                setMapper(MarketResult::class, MarketResult.serializer())
+                setMapper(MarketResponse::class, MarketResponse.serializer())
+                setMapper(TickerResponse::class, TickerResponse.serializer())
                 setMapper(TickerResult::class, TickerResult.serializer())
             }
         }
     }
 
-    suspend fun getMarkets(): List<MarketResponse> = client.get {
+    suspend fun getMarkets(): MarketResult = client.get {
         url {
-            takeFrom("https://bittrex.com/api/v1.1/public/")
-            encodedPath = "getmarkets"
+            protocol = URLProtocol.HTTPS
+            host = "bittrex.com"
+            encodedPath = "api/v1.1/public/getmarkets"
         }
     }
 
-    suspend fun getTicker( market: String): TickerResult  = client.get {
+    suspend fun getTicker(market: String): TickerResult = client.get {
         url {
-            takeFrom("https://bittrex.com/api/v1.1/public/")
-            encodedPath = "getticker"
+            protocol = URLProtocol.HTTPS
+            host = "bittrex.com"
+            encodedPath = "api/v1.1/public/getticker"
             parameter("market", market)
         }
     }

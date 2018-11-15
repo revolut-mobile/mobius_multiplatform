@@ -15,7 +15,6 @@ import com.revolut.presentation.exchange.ExchangePresenter
 import com.revolut.presentation.exchange.ExchangeView
 import kotlinx.android.synthetic.main.activity_echange.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.android.Main
 
 class ExchangeActivity : AppCompatActivity(), ExchangeView {
 

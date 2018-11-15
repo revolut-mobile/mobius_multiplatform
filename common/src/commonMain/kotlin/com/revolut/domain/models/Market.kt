@@ -9,6 +9,9 @@ data class Market(
         val minTradeSize: Double,
         val marketName: String,
         val isActive: Boolean,
+        val isRestricted: Boolean,
+        val notice: String?,
+        val isSponsored: Boolean?,
         val created: String,
         val logoUrl: String?
 )
