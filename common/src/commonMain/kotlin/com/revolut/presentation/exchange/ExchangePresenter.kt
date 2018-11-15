@@ -19,16 +19,21 @@ class ExchangePresenter(
     }
 
     fun refresh() {
-        GlobalScope.launch(UI, CoroutineStart.DEFAULT, null, {
+        GlobalScope.launch(UI) {
             view?.showLoading(true)
             try {
+                println("Get markets")
+
                 val markets = interactor.getTickersForAllMarkets()
+
+                println("Markets $markets")
                 view?.showMarkets(markets)
             } catch (e: Throwable) {
-                println(e.message)
+                println("Error ocured")
+                e.printStackTrace()
             }
             view?.showLoading(false)
-        })
+        }
     }
 
 }

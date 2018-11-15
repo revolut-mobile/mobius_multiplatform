@@ -10,7 +10,7 @@ class AllMarketsTickersSimultaneousInteractor(
 ) : AllMarketsTickersInteractor {
 
     override suspend fun getTickersForAllMarkets(): List<Pair<Market, Ticker>> {
-        return  repository.getAllMarkets()
+        return repository.getAllMarkets()
                 .subList(0, 20)
                 .map { market ->
                     market to repository.getTicker(market) }
