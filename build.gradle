@@ -1,19 +1,22 @@
-allprojects {
-    buildscript {
-        repositories {
-            maven { url "http://kotlin.bintray.com/kotlin-eap" }
-            maven { url "http://kotlin.bintray.com/kotlin-dev" }
-            maven { url "https://kotlin.bintray.com/kotlinx" }
-            maven { url 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies' }
+buildscript {
+    repositories {
+        maven { url "http://kotlin.bintray.com/kotlin-eap" }
+        maven { url "http://kotlin.bintray.com/kotlin-dev" }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies' }
 
-            google()
-            jcenter()
-        }
-        dependencies {
-            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-            classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
-        }
+        google()
+        jcenter()
     }
+    dependencies {
+        classpath "com.android.tools.build:gradle:3.4.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+    }
+}
+
+allprojects {
+
     repositories {
         maven { url "http://kotlin.bintray.com/kotlin-eap" }
         maven { url "http://kotlin.bintray.com/kotlin-dev" }
@@ -32,3 +35,6 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+//tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+//    kotlinOptions.freeCompilerArgs += ["-Xuse-experimental=kotlin"]
+//}

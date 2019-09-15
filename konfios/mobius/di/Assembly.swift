@@ -8,12 +8,12 @@
 
 import Foundation
 import EasyDi
-import common
+import SharedCode
 
 class ServiceAssembly: Assembly {
 
 
-    var exchangeRepository: common.ExchangeRepository {
+    var exchangeRepository: SharedCode.ExchangeRepository {
         return define(init: ExchangeRepository())
     }
     

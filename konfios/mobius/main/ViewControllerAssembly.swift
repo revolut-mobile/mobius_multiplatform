@@ -8,7 +8,7 @@
 
 import Foundation
 import EasyDi
-import common
+import SharedCode
 
 class ViewControllerAssembly: Assembly {
     
@@ -18,7 +18,7 @@ class ViewControllerAssembly: Assembly {
         defineInjection(into: viewController) {
             $0.presenter = ExchangePresenter(
                 interactor: self.serviceAssembly.exchangeInteractor,
-                UI: UI()
+                UI: SharedCode.MainLoopDispatcher()
                     
             )
             return $0

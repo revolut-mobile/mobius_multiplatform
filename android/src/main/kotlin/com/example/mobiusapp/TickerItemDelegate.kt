@@ -13,14 +13,15 @@ import kotlinx.android.synthetic.main.ticker_item_layout.view.*
 
 class TickerItemDelegate : AdapterDelegate<List<Any>>() {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup?): RecyclerView.ViewHolder
-            = ViewHolder(LayoutInflater.from(viewGroup?.context).inflate(R.layout.ticker_item_layout, viewGroup, false))
+    override fun onCreateViewHolder(viewGroup: ViewGroup?): RecyclerView.ViewHolder = ViewHolder(LayoutInflater.from(viewGroup?.context).inflate(R.layout.ticker_item_layout, viewGroup, false))
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(list: List<Any>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val marketTicker = list[position] as MarketTicker
         (holder as? ViewHolder)?.apply {
-            tickerTextView.text = "${marketTicker.market.marketName} bid: ${marketTicker.ticker.bid} ask: ${marketTicker.ticker.ask}"
+            tickerName.text = marketTicker.market.marketName
+            tickerBid.text = "Bid: ${String.format("%.${10}f", marketTicker.ticker.bid)}"
+            tickerAsk.text = "Ask: ${String.format("%.${10}f", marketTicker.ticker.ask)}"
         }
     }
 
@@ -29,7 +30,9 @@ class TickerItemDelegate : AdapterDelegate<List<Any>>() {
 
     class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        val tickerTextView: TextView = view.tickerTextView
+        val tickerName: TextView = view.tickerName
+        val tickerBid: TextView = view.tickerBid
+        val tickerAsk: TextView = view.tickerAsk
 
     }
 

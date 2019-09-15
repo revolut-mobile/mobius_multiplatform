@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import common
+import SharedCode
 
 class ViewController: UITableViewController, ExchangeView {
     
@@ -38,7 +38,7 @@ class ViewController: UITableViewController, ExchangeView {
         print("showMarkets on thread is \(Thread.current)")
         items.removeAll()
         items += tickers.map { (arg) -> Ticker in
-            return Ticker(market: arg.first as! common.Market, ticker: arg.second as! common.Ticker)
+            return Ticker(market: arg.first as! SharedCode.Market, ticker: arg.second as! SharedCode.Ticker)
         }
         tableView.reloadData()
     }
@@ -53,7 +53,7 @@ class ViewController: UITableViewController, ExchangeView {
     }
     
     @IBAction func refresh(refreshControl: UIRefreshControl) {
-        presenter.refresh()
+        //presenter.refresh()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

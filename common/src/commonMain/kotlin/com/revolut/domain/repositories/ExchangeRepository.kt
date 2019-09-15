@@ -2,14 +2,17 @@ package com.revolut.domain.repositories
 
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
-import com.revolut.domain.network.models.*
-import io.ktor.client.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.request.*
-import io.ktor.http.*
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.json.JSON
+import com.revolut.domain.network.models.MarketResponse
+import com.revolut.domain.network.models.MarketResult
+import com.revolut.domain.network.models.TickerResponse
+import com.revolut.domain.network.models.TickerResult
+import com.revolut.domain.network.models.toDomain
+import io.ktor.client.HttpClient
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.request.get
+import io.ktor.client.request.parameter
+import io.ktor.http.URLProtocol
 
 /**
  * Created by yatsinar on 17/03/2018.
@@ -18,23 +21,25 @@ import kotlinx.serialization.json.JSON
  */
 class ExchangeRepository {
 
-    suspend fun getAllMarkets(): List<Market> = Api.getMarkets().let(MarketResult::result).map(MarketResponse::toDomain)
+    private val api = Api()
 
-    suspend fun getTicker(market: Market): Ticker = Api.getTicker(market.marketName).result.toDomain()
+    suspend fun getAllMarkets(): List<Market> = api.getMarkets().let(MarketResult::result).map(MarketResponse::toDomain)
+
+    suspend fun getTicker(market: Market): Ticker = api.getTicker(market.marketName).result.toDomain()
 
 }
 
-object Api {
+class Api {
 
     private val client = HttpClient {
         install(CallLoggingFeature)
 
         install(JsonFeature) {
             serializer = KotlinxSerializer().apply {
-                setMapper(MarketResult::class, MarketResult.serializer())
-                setMapper(MarketResponse::class, MarketResponse.serializer())
-                setMapper(TickerResponse::class, TickerResponse.serializer())
-                setMapper(TickerResult::class, TickerResult.serializer())
+                register<MarketResult>()
+                register<MarketResponse>()
+                register<TickerResponse>()
+                register<TickerResult>()
             }
         }
     }

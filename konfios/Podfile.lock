@@ -8,6 +8,12 @@ DEPENDENCIES:
   - EasyDi
   - SwiftyJSON
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - EasyDi
+    - SwiftyJSON
+
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   EasyDi: 84cfe04e906c0f463b1b1d76ed4be3db446f9702
@@ -15,4 +21,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 056b840da154b1596882b7dcfb68de7015c1273b
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.7.5
