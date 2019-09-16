@@ -1,12 +1,15 @@
 package com.example.mobiusapp
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
@@ -27,6 +30,7 @@ class TickerItemDelegate :
         holder.takeIf { payloads.isNullOrEmpty() }?.applyData(data)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun ViewHolder.applyPayload(payload: Payload) {
         payload.market?.let {
             tickerName.text = it.marketName
@@ -34,41 +38,42 @@ class TickerItemDelegate :
 
         payload.bid?.let { (bid, trend) ->
             tickerBid.text = "Bid: ${String.format("%.${10}f", bid)}"
-            when (trend) {
-                Trend.UP -> tickerBid.setTextColor(Color.GREEN)
-                Trend.DOWN -> tickerBid.setTextColor(Color.RED)
-            }
-            tickerBid.startAnimation(
-                AnimationSet(true).apply {
-                    addAnimation(AlphaAnimation(1.0f, 0.5f).apply {
-                        duration = 100
-                    })
-                    addAnimation(AlphaAnimation(.5f, 1.0f).apply {
-                        duration = 100
-                        startOffset = 100
-                    })
-                }
-            )
+            tickerBid.animateTrend(trend)
         }
 
         payload.ask?.let { (ask, trend) ->
             tickerAsk.text = "Ask: ${String.format("%.${10}f", ask)}"
-            when (trend) {
-                Trend.UP -> tickerAsk.setTextColor(Color.GREEN)
-                Trend.DOWN -> tickerAsk.setTextColor(Color.RED)
-            }
-            tickerAsk.startAnimation(
-                AnimationSet(true).apply {
-                    addAnimation(AlphaAnimation(1.0f, 0.5f).apply {
-                        duration = 100
-                    })
-                    addAnimation(AlphaAnimation(.5f, 1.0f).apply {
-                        duration = 100
-                        startOffset = 100
-                    })
-                }
-            )
+            tickerAsk.animateTrend(trend)
         }
+    }
+
+    private fun TextView.animateTrend(trend: Trend) {
+        clearAnimation()
+        when (trend) {
+            Trend.UP -> this.setTextColor(Color.GREEN)
+            Trend.DOWN -> this.setTextColor(Color.RED)
+        }
+        startAnimation(
+            AnimationSet(true).apply {
+                addAnimation(AlphaAnimation(1.0f, 0.5f).apply {
+                    duration = ANIMATION_DURATION / 2
+                })
+                addAnimation(AlphaAnimation(.5f, 1.0f).apply {
+                    duration = ANIMATION_DURATION / 2
+                    startOffset = ANIMATION_DURATION / 2
+                })
+                setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationRepeat(p0: Animation?) = Unit
+
+                    override fun onAnimationEnd(p0: Animation?) {
+                        this@animateTrend.setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray))
+                    }
+
+                    override fun onAnimationStart(p0: Animation?) = Unit
+
+                })
+            }
+        )
     }
 
     private fun ViewHolder.applyData(data: MarketTicker) {
@@ -125,6 +130,10 @@ class TickerItemDelegate :
                 else null
             )
         }
+    }
+
+    companion object {
+        const val ANIMATION_DURATION = 300L
     }
 
 }
