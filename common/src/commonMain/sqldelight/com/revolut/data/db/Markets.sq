@@ -1,0 +1,13 @@
+
+CREATE TABLE Markets (
+    marketName TEXT NOT NULL,
+    isActive INTEGER NOT NULL,
+    logoUrl TEXT
+);
+
+insertItem:
+INSERT OR FAIL INTO Markets(marketName, isActive, logoUrl) VALUES (?, ?, ?);
+
+selectAll:
+SELECT *
+FROM Markets;

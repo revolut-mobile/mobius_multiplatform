@@ -1,4 +1,4 @@
-package com.revolut.domain.network.models
+package com.revolut.data.network.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

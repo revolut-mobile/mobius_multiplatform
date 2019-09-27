@@ -1,12 +1,16 @@
 package com.revolut.domain.repositories
 
+import com.revolut.data.db.DbArgs
+import com.revolut.data.db.MarketsDao
+import com.revolut.data.db.createDb
+import com.revolut.data.network.models.MarketResponse
+import com.revolut.data.network.models.MarketResult
+import com.revolut.data.network.models.TickerResponse
+import com.revolut.data.network.models.TickerResult
+import com.revolut.data.network.models.toDb
+import com.revolut.data.network.models.toDomain
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
-import com.revolut.domain.network.models.MarketResponse
-import com.revolut.domain.network.models.MarketResult
-import com.revolut.domain.network.models.TickerResponse
-import com.revolut.domain.network.models.TickerResult
-import com.revolut.domain.network.models.toDomain
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
@@ -19,11 +23,24 @@ import io.ktor.http.URLProtocol
  * Revolut
  * All rights reserved
  */
-class ExchangeRepository {
+class ExchangeRepository(
+    val dbArgs: DbArgs
+) {
 
+    private val marketsDao: MarketsDao = MarketsDao(createDb(dbArgs))
     private val api = Api()
 
-    suspend fun getAllMarkets(): List<Market> = api.getMarkets().let(MarketResult::result).map(MarketResponse::toDomain)
+    suspend fun getAllMarkets(): List<Market> {
+        val cachedMarkets = marketsDao.selectAll().map { it.toDomain() }
+
+        if (!cachedMarkets.isNullOrEmpty()) return cachedMarkets
+
+        val networkMarkets = api.getMarkets().let(MarketResult::result).subList(0, 20).map(MarketResponse::toDomain)
+
+        networkMarkets.forEach { marketsDao.insert(it.toDb()) }
+
+        return networkMarkets
+    }
 
     suspend fun getTicker(market: Market): Ticker = api.getTicker(market.marketName).result.toDomain()
 
@@ -60,6 +77,5 @@ class Api {
             parameter("market", market)
         }
     }
-
 
 }

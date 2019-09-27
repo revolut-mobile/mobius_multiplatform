@@ -19,7 +19,6 @@ class AllMarketsTickersSimultaneousInteractor(
 
     override suspend fun getTickersForAllMarkets(): List<Pair<Market, Ticker>> {
         return repository.getAllMarkets()
-            .subList(0, 10)
             .map { market ->
                 market to GlobalScope.async(Dispatchers.Unconfined) {
                     repository.getTicker(market)

@@ -5,6 +5,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.revolut.data.db.DbArgs
 import com.revolut.domain.interactors.AllMarketsTickersSimultaneousInteractor
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
@@ -19,9 +20,9 @@ import kotlinx.coroutines.Dispatchers
 
 class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
-    private val exchangeRepository = ExchangeRepository()
+    private val exchangeRepository by lazy { ExchangeRepository(DbArgs(context = applicationContext)) }
 
-    private val interactor = AllMarketsTickersSimultaneousInteractor(exchangeRepository)
+    private val interactor by lazy { AllMarketsTickersSimultaneousInteractor(exchangeRepository) }
 
     private val adapter by lazy {
         DiffAdapter(
@@ -29,10 +30,12 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
         )
     }
 
-    private val presenter = ExchangePresenter(
-        interactor = interactor,
-        UI = Dispatchers.Main
-    )
+    private val presenter by lazy {
+        ExchangePresenter(
+            interactor = interactor,
+            UI = Dispatchers.Main
+        )
+    }
 
     override fun showMarkets(tickers: List<Pair<Market, Ticker>>) {
         adapter.setItems(tickers.map {

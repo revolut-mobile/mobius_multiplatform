@@ -14,7 +14,7 @@ class ServiceAssembly: Assembly {
 
 
     var exchangeRepository: SharedCode.ExchangeRepository {
-        return define(init: ExchangeRepository())
+        return define(init: ExchangeRepository(dbArgs: DbArgs()))
     }
     
     var exchangeInteractor: AllMarketsTickersInteractor {
