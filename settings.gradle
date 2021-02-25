@@ -1,6 +1,0 @@
-rootProject.name = 'mobius'
-
-enableFeaturePreview('GRADLE_METADATA')
-
-include ':common'
-include ':android'

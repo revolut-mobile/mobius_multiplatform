@@ -34,11 +34,11 @@ class ViewController: UITableViewController, ExchangeView {
         presenter.detach()
     }
     
-    func showMarkets(tickers: [KotlinPair]) {
+    func showMarkets(tickers: [KotlinPair<SharedCode.Market, SharedCode.Ticker>]) {
         print("showMarkets on thread is \(Thread.current)")
         items.removeAll()
         items += tickers.map { (arg) -> Ticker in
-            return Ticker(market: arg.first as! SharedCode.Market, ticker: arg.second as! SharedCode.Ticker)
+            return Ticker(market: arg.first!, ticker: arg.second!)
         }
         tableView.reloadData()
     }
