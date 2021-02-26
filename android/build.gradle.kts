@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("org.jetbrains.kotlin.android.extensions")
 }
 
 val coroutinesVersion: String by project
@@ -27,10 +26,15 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     kotlinOptions {

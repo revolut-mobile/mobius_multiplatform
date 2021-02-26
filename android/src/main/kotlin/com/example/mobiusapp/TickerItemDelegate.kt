@@ -11,20 +11,29 @@ import android.view.animation.AnimationSet
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobiusapp.databinding.TickerItemLayoutBinding
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
 import com.revolut.recyclerkit.animations.holder.AnimateChangeViewHolder
 import com.revolut.recyclerkit.delegates.BaseRecyclerViewDelegate
+import com.revolut.recyclerkit.delegates.BaseRecyclerViewHolder
 import com.revolut.recyclerkit.delegates.ListItem
-import kotlinx.android.synthetic.main.ticker_item_layout.view.*
 
 class TickerItemDelegate :
-    BaseRecyclerViewDelegate<TickerItemDelegate.MarketTicker, TickerItemDelegate.ViewHolder>(R.layout.ticker_item_layout, { pos, data -> data is MarketTicker }) {
+    BaseRecyclerViewDelegate<TickerItemDelegate.MarketTicker, TickerItemDelegate.ViewHolder>(
+        R.layout.ticker_item_layout,
+        { pos, data -> data is MarketTicker }) {
 
     override fun onCreateViewHolder(parent: ViewGroup): ViewHolder =
         ViewHolder(LayoutInflater.from(parent.context).inflate(viewType, parent, false))
 
-    override fun onBindViewHolder(holder: ViewHolder, data: MarketTicker, pos: Int, payloads: List<Any>?) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        data: MarketTicker,
+        pos: Int,
+        payloads: List<Any>?
+    ) {
+        super.onBindViewHolder(holder, data, pos, payloads)
         payloads?.filterIsInstance<Payload>()?.forEach { holder.applyPayload(it) }
 
         holder.takeIf { payloads.isNullOrEmpty() }?.applyData(data)
@@ -66,7 +75,12 @@ class TickerItemDelegate :
                     override fun onAnimationRepeat(p0: Animation?) = Unit
 
                     override fun onAnimationEnd(p0: Animation?) {
-                        this@animateTrend.setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray))
+                        this@animateTrend.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                android.R.color.darker_gray
+                            )
+                        )
                     }
 
                     override fun onAnimationStart(p0: Animation?) = Unit
@@ -82,11 +96,13 @@ class TickerItemDelegate :
         tickerAsk.text = "Ask: ${String.format("%.${10}f", data.ticker.ask)}"
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), AnimateChangeViewHolder {
+    class ViewHolder(view: View) : BaseRecyclerViewHolder(view), AnimateChangeViewHolder {
+        val binding = TickerItemLayoutBinding.bind(view)
 
-        override fun canAnimateChange(payloads: List<Any>): Boolean = payloads.filterIsInstance<Payload>().any {
-            it.bid != null || it.ask != null
-        }
+        override fun canAnimateChange(payloads: List<Any>): Boolean =
+            payloads.filterIsInstance<Payload>().any {
+                it.bid != null || it.ask != null
+            }
 
         override fun endChangeAnimation(holder: RecyclerView.ViewHolder) {
             (holder as ViewHolder).apply {
@@ -95,9 +111,9 @@ class TickerItemDelegate :
             }
         }
 
-        val tickerName: TextView = view.tickerName
-        val tickerBid: TextView = view.tickerBid
-        val tickerAsk: TextView = view.tickerAsk
+        val tickerName: TextView = binding.tickerName
+        val tickerBid: TextView = binding.tickerBid
+        val tickerAsk: TextView = binding.tickerAsk
     }
 
     private enum class Trend {
