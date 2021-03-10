@@ -3,20 +3,15 @@ package com.revolut.domain.repositories
 import com.revolut.data.db.DbArgs
 import com.revolut.data.db.MarketsDao
 import com.revolut.data.db.createDb
-import com.revolut.data.network.models.MarketResponse
-import com.revolut.data.network.models.MarketResult
-import com.revolut.data.network.models.TickerResponse
-import com.revolut.data.network.models.TickerResult
-import com.revolut.data.network.models.toDb
-import com.revolut.data.network.models.toDomain
+import com.revolut.data.network.models.*
 import com.revolut.domain.models.Market
 import com.revolut.domain.models.Ticker
-import io.ktor.client.HttpClient
+import io.ktor.client.*
 import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.request.get
-import io.ktor.client.request.parameter
-import io.ktor.http.URLProtocol
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.request.*
+import io.ktor.http.*
+import kotlinx.serialization.json.Json
 
 /**
  * Created by yatsinar on 17/03/2018.
@@ -24,7 +19,7 @@ import io.ktor.http.URLProtocol
  * All rights reserved
  */
 class ExchangeRepository(
-    val dbArgs: DbArgs
+    dbArgs: DbArgs
 ) {
 
     private val marketsDao: MarketsDao = MarketsDao(createDb(dbArgs))
@@ -35,14 +30,16 @@ class ExchangeRepository(
 
         if (!cachedMarkets.isNullOrEmpty()) return cachedMarkets
 
-        val networkMarkets = api.getMarkets().let(MarketResult::result).subList(0, 20).map(MarketResponse::toDomain)
+        val networkMarkets =
+            api.getMarkets().let(MarketResult::result).subList(0, 20).map(MarketResponse::toDomain)
 
         networkMarkets.forEach { marketsDao.insert(it.toDb()) }
 
         return networkMarkets
     }
 
-    suspend fun getTicker(market: Market): Ticker = api.getTicker(market.marketName).result.toDomain()
+    suspend fun getTicker(market: Market): Ticker =
+        api.getTicker(market.marketName).result.toDomain()
 
 }
 
@@ -52,12 +49,8 @@ class Api {
         install(CallLoggingFeature)
 
         install(JsonFeature) {
-            serializer = KotlinxSerializer().apply {
-                register<MarketResult>()
-                register<MarketResponse>()
-                register<TickerResponse>()
-                register<TickerResult>()
-            }
+            val json = Json { ignoreUnknownKeys = true }
+            serializer = KotlinxSerializer(json)
         }
     }
 

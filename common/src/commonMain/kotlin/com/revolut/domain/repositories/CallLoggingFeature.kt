@@ -3,18 +3,18 @@ package com.revolut.domain.repositories
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.request.*
-import io.ktor.client.response.*
-import io.ktor.http.*
+import io.ktor.client.statement.*
 import io.ktor.util.*
 
 class CallLoggingFeature(private val tag: String) {
 
     companion object Feature : HttpClientFeature<Config, CallLoggingFeature> {
 
-        override val key: AttributeKey<CallLoggingFeature> = AttributeKey<CallLoggingFeature>("CallLoggingFeature")
+        override val key: AttributeKey<CallLoggingFeature> =
+            AttributeKey<CallLoggingFeature>("CallLoggingFeature")
 
         override fun prepare(block: Config.() -> Unit): CallLoggingFeature =
-                Config().apply(block).let { CallLoggingFeature(it.tag) }
+            Config().apply(block).let { CallLoggingFeature(it.tag) }
 
         override fun install(feature: CallLoggingFeature, scope: HttpClient) {
 

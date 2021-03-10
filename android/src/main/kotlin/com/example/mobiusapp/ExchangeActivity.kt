@@ -5,6 +5,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mobiusapp.databinding.ActivityEchangeBinding
 import com.revolut.data.db.DbArgs
 import com.revolut.domain.interactors.AllMarketsTickersSimultaneousInteractor
 import com.revolut.domain.models.Market
@@ -15,7 +16,6 @@ import com.revolut.presentation.exchange.ExchangeView
 import com.revolut.recyclerkit.animations.FadeInAnimator
 import com.revolut.recyclerkit.delegates.DelegatesManager
 import com.revolut.recyclerkit.delegates.DiffAdapter
-import kotlinx.android.synthetic.main.activity_echange.*
 import kotlinx.coroutines.Dispatchers
 
 class ExchangeActivity : AppCompatActivity(), ExchangeView {
@@ -23,6 +23,8 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
     private val exchangeRepository by lazy { ExchangeRepository(DbArgs(context = applicationContext)) }
 
     private val interactor by lazy { AllMarketsTickersSimultaneousInteractor(exchangeRepository) }
+
+    private lateinit var binding: ActivityEchangeBinding
 
     private val adapter by lazy {
         DiffAdapter(
@@ -44,7 +46,7 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
     }
 
     override fun showLoading(loading: Boolean) {
-        loadingProgress.visibility = if (loading) VISIBLE else GONE
+        binding.loadingProgress.visibility = if (loading) VISIBLE else GONE
     }
 
     override fun onStart() {
@@ -59,11 +61,11 @@ class ExchangeActivity : AppCompatActivity(), ExchangeView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_echange)
+        binding = ActivityEchangeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        tickersRecyclerView.adapter = adapter
-        tickersRecyclerView.layoutManager = LinearLayoutManager(this)
-        tickersRecyclerView.itemAnimator = FadeInAnimator()
+        binding.tickersRecyclerView.adapter = adapter
+        binding.tickersRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.tickersRecyclerView.itemAnimator = FadeInAnimator()
     }
-
 }

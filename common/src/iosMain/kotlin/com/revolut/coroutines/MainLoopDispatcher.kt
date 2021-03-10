@@ -1,22 +1,12 @@
 package com.revolut.coroutines
 
-import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Delay
-import kotlinx.coroutines.DisposableHandle
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.Runnable
-import platform.darwin.DISPATCH_TIME_NOW
-import platform.darwin.dispatch_after
-import platform.darwin.dispatch_async
-import platform.darwin.dispatch_get_main_queue
-import platform.darwin.dispatch_time
+import kotlinx.coroutines.*
+import platform.darwin.*
 import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
-@UseExperimental(InternalCoroutinesApi::class)
-object MainLoopDispatcher: CoroutineDispatcher(), Delay {
+@OptIn(InternalCoroutinesApi::class)
+object MainLoopDispatcher : CoroutineDispatcher(), Delay {
 
     override fun dispatch(context: CoroutineContext, block: Runnable) {
         dispatch_async(dispatch_get_main_queue()) {
@@ -28,8 +18,14 @@ object MainLoopDispatcher: CoroutineDispatcher(), Delay {
         }
     }
 
-    override fun scheduleResumeAfterDelay(timeMillis: Long, continuation: CancellableContinuation<Unit>) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, timeMillis * 1_000_000), dispatch_get_main_queue()) {
+    override fun scheduleResumeAfterDelay(
+        timeMillis: Long,
+        continuation: CancellableContinuation<Unit>
+    ) {
+        dispatch_after(
+            dispatch_time(DISPATCH_TIME_NOW, timeMillis * 1_000_000),
+            dispatch_get_main_queue()
+        ) {
             try {
                 with(continuation) {
                     resumeUndispatched(Unit)
@@ -40,7 +36,11 @@ object MainLoopDispatcher: CoroutineDispatcher(), Delay {
         }
     }
 
-    override fun invokeOnTimeout(timeMillis: Long, block: Runnable): DisposableHandle {
+    override fun invokeOnTimeout(
+        timeMillis: Long,
+        block: Runnable,
+        context: CoroutineContext
+    ): DisposableHandle {
         val handle = object : DisposableHandle {
             var disposed = false
                 private set
@@ -49,7 +49,10 @@ object MainLoopDispatcher: CoroutineDispatcher(), Delay {
                 disposed = true
             }
         }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, timeMillis * 1_000_000), dispatch_get_main_queue()) {
+        dispatch_after(
+            dispatch_time(DISPATCH_TIME_NOW, timeMillis * 1_000_000),
+            dispatch_get_main_queue()
+        ) {
             try {
                 if (!handle.disposed) {
                     block.run()
